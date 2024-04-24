@@ -117,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.air;
         }
+
     }
 
     void Player_Move() 
@@ -146,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        grounded = Physics.Raycast(transform.position, Vector3.down, playersHeight * 0.5f + 0.2f, whatIsGround); // проверка на нахождение на земле
+        grounded = Physics.Raycast(transform.position, Vector3.down, playersHeight * 0.5f + 0.1f, whatIsGround); // проверка на нахождение на земле
 
         Custom_Input();
         SpeedControl();
@@ -160,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         Player_Move();
     }
 
