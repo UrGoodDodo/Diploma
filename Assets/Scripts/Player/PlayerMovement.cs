@@ -179,8 +179,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (flatVel.magnitude > moveSpeed)
             {
-                Vector3 limitedVel = flatVel.normalized * moveSpeed;
-                rb.velocity = new Vector3(limitedVel.x, limitedVel.y, limitedVel.z);
+                Vector3 limitedVel = flatVel.normalized * moveSpeed; //считаем должную максимальную скорость
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z); //применяем
             }
         } 
     }

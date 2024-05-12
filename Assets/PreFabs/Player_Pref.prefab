@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 312320028877146336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.721, z: 0}
+  m_LocalPosition: {x: 0, y: 0.578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -142,7 +142,7 @@ MonoBehaviour:
   walkSpeed: 3
   sprintSpeed: 5
   groundDrag: 5
-  jumpForce: 4
+  jumpForce: 5
   jumpCooldown: 0.75
   airMultiplier: 0.1
   crouchSpeed: 1.5
@@ -398,7 +398,7 @@ Transform:
   m_GameObject: {fileID: 7913534159851101851}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.64, z: 0}
+  m_LocalPosition: {x: 0, y: 0.578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
