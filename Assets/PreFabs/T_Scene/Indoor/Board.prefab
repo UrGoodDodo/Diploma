@@ -434,6 +434,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 253c2b1acbe45b14faf37fe6723f454d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 554a4565e4d4dc24f8d95eb32b017607, type: 2}
     - target: {fileID: 919132149155446097, guid: 253c2b1acbe45b14faf37fe6723f454d, type: 3}
       propertyPath: m_Name
       value: tablo

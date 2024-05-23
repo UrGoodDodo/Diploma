@@ -80,6 +80,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6860779577520692474, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f96702b8ee0cd184e911dcd7ca0f9530, type: 2}
+    - target: {fileID: -6860779577520692474, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e0275506f59170c4ab2a00ded48d4686, type: 2}
     - target: {fileID: 919132149155446097, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
       propertyPath: m_Name
       value: F_Books

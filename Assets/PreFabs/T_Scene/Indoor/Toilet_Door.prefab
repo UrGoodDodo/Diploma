@@ -434,6 +434,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: bb08ea51aaea4b34688a6c2c0091760b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7fc629945d9338a429e7861d2f6ce0ae, type: 2}
     - target: {fileID: 919132149155446097, guid: bb08ea51aaea4b34688a6c2c0091760b, type: 3}
       propertyPath: m_Name
       value: TI_ToiletDoor

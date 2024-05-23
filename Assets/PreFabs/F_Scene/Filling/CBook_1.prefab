@@ -92,6 +92,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FMB_Book_01_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1643793460736327841, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a237a62f40f1aa04d848a14b021a7b88, type: 2}
+    - target: {fileID: 1643793460736327841, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 393d739a865c66a4795a9b4ecc77aa32, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2609446807676889714, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
