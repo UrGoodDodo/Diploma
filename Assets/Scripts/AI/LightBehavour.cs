@@ -25,6 +25,7 @@ public class LightBehavour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TurnOn();
         OnTriggerEnter(ai_position.GetComponent<Collider>());
         if (flashlight_exist)
         {
