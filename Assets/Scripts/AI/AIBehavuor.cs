@@ -14,7 +14,7 @@ public class AIBehavuor : MonoBehaviour
     //Player`s position
     Vector3 dest;
     //Angle of AI view
-    [Range(0f, 360f)] float view_angel = 90f;
+    [Range(0f, 360f)] float view_angel = 120f;
     //View distance AI
     float view_dist = 15f;
     //Detection distance AI
@@ -26,9 +26,7 @@ public class AIBehavuor : MonoBehaviour
     //AI speed
     public float ai_speed;
     //
-    public Transform player_camera;
-    //
-    private float rotation_speed_ai;
+    //private float rotation_speed_ai;
 
 
     // Start is called before the first frame update
@@ -87,20 +85,14 @@ public class AIBehavuor : MonoBehaviour
         return false;
     }
 
-    //Rotation AI
-    private void RotationAI()
-    {
-        Vector3 look = player.position - ai_position.position;
-        look.y = 0;
-        if (look == Vector3.zero)
-            return;
-        ai_position.rotation = Quaternion.RotateTowards(player.rotation, Quaternion.LookRotation(look, Vector3.up), rotation_speed_ai * Time.deltaTime);
-    }
-
-    //
-    private void Flashlight()
-    {
-        
-    }
+    ////Rotation AI
+    //private void RotationAI()
+    //{
+    //    Vector3 look = player.position - ai_position.position;
+    //    look.y = 0;
+    //    if (look == Vector3.zero)
+    //        return;
+    //    ai_position.rotation = Quaternion.RotateTowards(player.rotation, Quaternion.LookRotation(look, Vector3.up), rotation_speed_ai * Time.deltaTime);
+    //}
 
 }
