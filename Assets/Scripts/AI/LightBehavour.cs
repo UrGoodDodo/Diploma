@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class LightBehavour : MonoBehaviour
 {
@@ -14,34 +15,26 @@ public class LightBehavour : MonoBehaviour
     //View distance AI
     float view_dist = 100f;
     //
-    bool flashlight_exist = true;
-    //
     bool flashlight_on;
     //
     bool flashlight_off;
     //
     bool room_dark;
 
+
+    //
+    public static bool flashlight_exist = false;
+    //
+    public static Action FlashlightExist;
+
     // Start is called before the first frame update
     void Start()
     {
-        TurnOn();
-        OnTriggerEnter(ai_position.GetComponent<Collider>());
-        if (flashlight_exist)
-        {
-            if (room_dark)
-            {
-                TurnOff();
-                Debug.Log("1");
-            }
-           // if (flashlight_off) TurnOn();
-           // if (flashlight_on) TurnOff();
-        }
+        TurnOff();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        other = ai_position.GetComponent<Collider>();
         room_dark = true;
     }
 
@@ -49,6 +42,15 @@ public class LightBehavour : MonoBehaviour
     void Update()
     {
         RotateFlashlight();
+        if (flashlight_exist)
+        {
+            OnTriggerEnter(ai_position.GetComponent<Collider>());
+            if (room_dark)
+            {
+                TurnOn();
+            }
+            else TurnOff();
+        }
     }
 
     //The flashlight looks towards the direction of the players camera
@@ -73,5 +75,11 @@ public class LightBehavour : MonoBehaviour
     {
         if (flashlight.enabled == true)
             flashlight.enabled = false;
+    }
+
+    //
+    private void OnCollisionEnter(Collision collision)
+    {
+        FlashlightExist?.Invoke();
     }
 }

@@ -7864,7 +7864,7 @@ MonoBehaviour:
   player: {fileID: 3868099245896506678}
   ai_eyes: {fileID: 1231728563}
   ai_position: {fileID: 713874210774680483}
-  ai_speed: 1
+  ai_speed: 1.5
 --- !u!1 &713874210774680480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 94418207852197598, guid: 27dbd11444f8e9144bc9e4fb388ffea2, type: 3}

@@ -61,6 +61,7 @@ public class AIBehavuor : MonoBehaviour
     {
         if(ai_nav.isStopped)
             ai_nav.Resume();
+       // RotationAI();
         dest = player.position;
         ai_nav.destination = dest;
     }
@@ -85,14 +86,14 @@ public class AIBehavuor : MonoBehaviour
         return false;
     }
 
-    ////Rotation AI
-    //private void RotationAI()
-    //{
-    //    Vector3 look = player.position - ai_position.position;
-    //    look.y = 0;
-    //    if (look == Vector3.zero)
-    //        return;
-    //    ai_position.rotation = Quaternion.RotateTowards(player.rotation, Quaternion.LookRotation(look, Vector3.up), rotation_speed_ai * Time.deltaTime);
-    //}
+    //Rotation AI
+    private void RotationAI()
+    {
+        Vector3 look = player.position - ai_position.position;
+        look.y = 0;
+        if (look == Vector3.zero)
+            return;
+        ai_position.rotation = Quaternion.RotateTowards(player.rotation, Quaternion.LookRotation(look, Vector3.up), 30 * Time.deltaTime);
+    }
 
 }
