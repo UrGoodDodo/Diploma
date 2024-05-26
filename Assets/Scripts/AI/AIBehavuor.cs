@@ -27,6 +27,8 @@ public class AIBehavuor : MonoBehaviour
     public float ai_speed;
     //
     //private float rotation_speed_ai;
+    //
+    public static bool is_searching_key;
 
 
     // Start is called before the first frame update
@@ -43,14 +45,21 @@ public class AIBehavuor : MonoBehaviour
     {
         
         float real_dist_to_player = Vector3.Distance(player.transform.position, ai_position.transform.position);
-        if(real_dist_to_player <= detection_dist || IsInView())
+        if (is_searching_key)
         {
-            //RotationAI();
-            if (real_dist_to_player <= 1.5f)
-                Wait();
-            else
+            SearchingKeyAI();
+        }
+        else
+        {
+            if (real_dist_to_player <= detection_dist || IsInView())
             {
-                Follow();
+                //RotationAI();
+                if (real_dist_to_player <= 1.5f)
+                    Wait();
+                else
+                {
+                    Follow();
+                }
             }
         }
         
@@ -94,6 +103,11 @@ public class AIBehavuor : MonoBehaviour
         if (look == Vector3.zero)
             return;
         ai_position.rotation = Quaternion.RotateTowards(player.rotation, Quaternion.LookRotation(look, Vector3.up), 30 * Time.deltaTime);
+    }
+
+    private void SearchingKeyAI()
+    {
+
     }
 
 }

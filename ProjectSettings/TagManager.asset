@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Flashlight_chip
+  - Voice_chip
+  - Memory_chip
+  - Key
+  - Red_book
+  - Yellow_book
+  - Green_book
+  - Blue_book
+  - Room_is_dark
+  - Key_trigger
+  - AI
+  - KeyPoints
   layers:
   - Default
   - TransparentFX
