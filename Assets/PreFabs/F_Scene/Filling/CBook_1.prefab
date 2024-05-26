@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5055826836677481750
 Transform:
@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7070359798238156459, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -3662149526866869058, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -91,6 +95,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
       propertyPath: m_Name
       value: FMB_Book_01_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1643793460736327841, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
       propertyPath: m_Materials.Array.data[0]

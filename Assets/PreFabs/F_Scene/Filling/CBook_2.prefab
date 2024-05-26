@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5055826836677481750
 Transform:
@@ -40,6 +40,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5055826836677481750}
     m_Modifications:
+    - target: {fileID: -8895832423071077136, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -103,6 +107,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
       propertyPath: m_Name
       value: FMB_Stack_01_Pt_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9a7829c3ceda8f4fafb2e03b86a6d0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
