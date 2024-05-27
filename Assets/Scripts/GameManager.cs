@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private void OnEnable()
     {
-        LightBehavour.FlashlightExist += Taken;
+        RoomIsDarkTrigger.RoomIsDark += RoomDark;
         LightBehavour.FlashlightExist += Exist;
         TriggerR1Behavour.StartedKeyTrigger += SearchingKey;
         TriggerR2Behavour.StartBookTrigger += BooksPuzzle;
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        LightBehavour.FlashlightExist -= Taken;
+        RoomIsDarkTrigger.RoomIsDark -= RoomDark;
         LightBehavour.FlashlightExist -= Exist;
         TriggerR1Behavour.StartedKeyTrigger -= SearchingKey;
         TriggerR2Behavour.StartBookTrigger -= BooksPuzzle;
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void Taken()
     {
+        //переменную нужно мен€ть с учетом, что фонарик подобран, поэтому в скрипте плейера надо создать событие
         if(!LightBehavour.flashlight_was_taken)
             LightBehavour.flashlight_was_taken = true;
         //здесь надо написать код, мен€ющий в скрипте лайтинга значение переменной flashlight_was_taken на тру 
@@ -36,8 +37,6 @@ public class GameManager : MonoBehaviour
 
     public void SearchingKey()
     {
-        if(!KeyTriggerBehavour.StartToSearch)
-            KeyTriggerBehavour.StartToSearch = true;
         TriggerR1Behavour.IsTriggeredR1 = true;
         AIBehavuor.is_searching_key = true;
     }
@@ -45,5 +44,10 @@ public class GameManager : MonoBehaviour
     public void BooksPuzzle()
     {
 
+    }
+
+    public void RoomDark()
+    {
+        LightBehavour.room_dark = true;
     }
 }

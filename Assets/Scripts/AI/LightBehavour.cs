@@ -19,7 +19,7 @@ public class LightBehavour : MonoBehaviour
     //
     bool flashlight_off;
     //
-    bool room_dark;
+    public static bool room_dark;
 
     //
     public static bool flashlight_was_taken = false;
@@ -34,23 +34,12 @@ public class LightBehavour : MonoBehaviour
         TurnOff();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        room_dark = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        room_dark = false;
-    }
-
     // Update is called once per frame
     void Update()
     {
         RotateFlashlight();
         if (flashlight_exist)
         {
-            OnTriggerEnter(ai_position.GetComponent<Collider>());
             if (room_dark)
             {
                 if(!flashlight_on)
@@ -98,4 +87,6 @@ public class LightBehavour : MonoBehaviour
             if(!flashlight_exist)
                 FlashlightExist?.Invoke();
     }
+
+
 }
