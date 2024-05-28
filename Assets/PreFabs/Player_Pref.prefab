@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: ee1696a19bcf77f46aeee4f9698add20, type: 2}
-  smoothSpeed: 50
+  smoothSpeed: 100
 --- !u!1 &7913534159851101851
 GameObject:
   m_ObjectHideFlags: 0
