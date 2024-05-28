@@ -11,4 +11,5 @@ public class RoomIsDarkTrigger : MonoBehaviour
     {
         RoomIsDark?.Invoke();
     }
+
 }

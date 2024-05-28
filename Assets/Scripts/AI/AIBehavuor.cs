@@ -11,6 +11,13 @@ public class AIBehavuor : MonoBehaviour
     public NavMeshAgent ai_nav;
     //Component of player
     public Transform player;
+    //AI`s eyes
+    public Transform ai_eyes;
+    //Position of AI
+    public Transform ai_position;
+    //AI speed
+    public float ai_speed;
+
     //Player`s position
     Vector3 dest;
     //Angle of AI view
@@ -19,14 +26,13 @@ public class AIBehavuor : MonoBehaviour
     float view_dist = 15f;
     //Detection distance AI
     float detection_dist = 2f;
-    //AI`s eyes
-    public Transform ai_eyes;
-    //Position of AI
-    public Transform ai_position;
-    //AI speed
-    public float ai_speed;
     //
     //private float rotation_speed_ai;
+    //
+    //
+   // public Animator anim;
+    //
+    float timer;
     //
     public static bool is_searching_key;
 
@@ -34,10 +40,13 @@ public class AIBehavuor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = 0;
         if (ai_speed == 0)
             ai_speed = 2f;
         else
             ai_nav.speed = ai_speed;
+        //anim = GetComponent<Animator>();
+        //anim.Play("Idle");
     }
 
     // Update is called once per frame
@@ -54,7 +63,7 @@ public class AIBehavuor : MonoBehaviour
             if (real_dist_to_player <= detection_dist || IsInView())
             {
                 //RotationAI();
-                if (real_dist_to_player <= 1.5f)
+                if (real_dist_to_player <= 1.8f)
                     Wait();
                 else
                 {
@@ -70,7 +79,9 @@ public class AIBehavuor : MonoBehaviour
     {
         if(ai_nav.isStopped)
             ai_nav.Resume();
-       // RotationAI();
+        // RotationAI();
+       // anim.SetBool("IsWalking", true);
+       // anim.Play("Walk");
         dest = player.position;
         ai_nav.destination = dest;
     }
@@ -79,7 +90,11 @@ public class AIBehavuor : MonoBehaviour
     [System.Obsolete]
     protected void Wait()
     {
+
         ai_nav.Stop();
+      //  anim.SetBool("IsWalking", false);
+       // StartCoroutine(StopTime());
+       // anim.Play("Idle");
     }
 
     //Player is in the field of view of AI
@@ -107,7 +122,13 @@ public class AIBehavuor : MonoBehaviour
 
     private void SearchingKeyAI()
     {
+      //  anim.SetBool("IsSearching", true);
+       // anim.Play("Search");
+    }
 
+    IEnumerator StopTime()
+    {
+        yield return new WaitForSeconds(5f);
     }
 
 }
