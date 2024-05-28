@@ -1,17 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HoldNDrop : MonoBehaviour
 {
+    [SerializeField]
+    private Material outlineMaterial;
 
     private bool isDragging = false;
     private Rigidbody currentlyHoldItem;
+    private MeshRenderer hitItemRenderer;
     private Vector3 offset;
-    private int originalLayer;
+    private Material[] originalMaterials;
 
     [Header("Smooth movement")]
     public float smoothSpeed = 5.0f;
+
+    private GameObject lastHoldItem;
+
+    private bool lastIsColored = false;
+
+    private void Start()
+    {
+        lastHoldItem = new GameObject("Cool GameObject made from Code");
+        lastHoldItem.AddComponent<MeshRenderer>();
+        originalMaterials = new Material[1];
+    }
 
     void Update()
     {
@@ -24,21 +39,44 @@ public class HoldNDrop : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit)) 
             {
-                if (Input.GetMouseButtonDown(0)) 
+                GameObject hitGameObject = hit.collider.gameObject;
+                if (hitGameObject != lastHoldItem)
+                {
+                    MeshRenderer lastHoldItemRenderer = lastHoldItem.GetComponent<MeshRenderer>();
+                    lastHoldItemRenderer.materials = originalMaterials;
+                    lastIsColored = false;
+                }
+
+                if (hitGameObject.gameObject.layer == LayerMask.NameToLayer("Items") && !lastIsColored)
+                {
+                    hitItemRenderer = hitGameObject.gameObject.GetComponent<MeshRenderer>();
+                    originalMaterials = hitItemRenderer.materials;
+                    Material[] tmats = new Material[originalMaterials.Length + 1];
+
+                    for (int i = 0; i < originalMaterials.Length; i++)
+                    {
+                        tmats[i] = originalMaterials[i];
+                    }
+                    tmats[tmats.Length - 1] = outlineMaterial;
+
+                    hitItemRenderer.materials = tmats;
+
+                    lastHoldItem = hitGameObject;
+                    lastIsColored = true;
+                }
+
+                if (Input.GetMouseButtonDown(0))
                 {
                     Rigidbody hitRigidBody = hit.collider.GetComponent<Rigidbody>();
-                    if (hitRigidBody != null) 
+                    if (hitRigidBody != null && hitRigidBody.gameObject.layer == LayerMask.NameToLayer("Items"))
                     {
                         isDragging = true;
                         currentlyHoldItem = hitRigidBody;
-                        originalLayer = currentlyHoldItem.gameObject.layer;
-
-                        int temporaryLayer = LayerMask.NameToLayer("TemporaryLayer");
-                        currentlyHoldItem.gameObject.layer = temporaryLayer;
 
                         offset = currentlyHoldItem.transform.position - hit.point;
 
                         currentlyHoldItem.isKinematic = true;
+
                     }
                 }
             }
@@ -50,7 +88,6 @@ public class HoldNDrop : MonoBehaviour
             MoveWithCollisions(targetPosition);
             if (Input.GetMouseButtonUp(0)) 
             {
-                currentlyHoldItem.gameObject.layer = originalLayer;
                 isDragging = false;
                 currentlyHoldItem.isKinematic = false;
                 currentlyHoldItem = null;
@@ -63,4 +100,5 @@ public class HoldNDrop : MonoBehaviour
     {
         currentlyHoldItem.MovePosition(Vector3.Lerp(currentlyHoldItem.transform.position, targetPosition, smoothSpeed * Time.deltaTime));
     }
+
 }

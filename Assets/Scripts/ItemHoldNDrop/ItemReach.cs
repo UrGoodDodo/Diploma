@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemReach : MonoBehaviour
 {
-    public float reachDsitance = 5.0f;
+    public float reachDsitance = 0.01f;
 
     void Update()
     {
@@ -14,9 +14,9 @@ public class ItemReach : MonoBehaviour
         if (Physics.Raycast(ray, out hit, reachDsitance))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.green);
-            Debug.Log("Object hit " + hit.collider.gameObject.name);
+            //Debug.Log("Object hit " + hit.collider.gameObject.name);
         }
-        else 
+        else
         {
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * reachDsitance, Color.green);
         }

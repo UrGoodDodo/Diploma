@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6beea19d07b714c8d5b32e380069b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachDsitance: 5
+  reachDsitance: 3
 --- !u!114 &8992360076980838174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146c2c58dfc12bc46b9888f8cf686447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: ee1696a19bcf77f46aeee4f9698add20, type: 2}
   smoothSpeed: 50
 --- !u!1 &7913534159851101851
 GameObject:
