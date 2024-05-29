@@ -23,7 +23,7 @@ public class RoomMovement : MonoBehaviour
 
     bool FquestIsDone = false;
 
-    bool SquestIsDone = true;
+    bool SquestIsDone = false;
 
 
     private void OnEnable()

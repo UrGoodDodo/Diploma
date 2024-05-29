@@ -120,6 +120,8 @@ public class HoldNDrop : MonoBehaviour
 
     private void setCurrentItemNull() 
     {
+        isDragging = false;
+        currentlyHoldItem.isKinematic = false;
         currentlyHoldItem = null;
     }
 

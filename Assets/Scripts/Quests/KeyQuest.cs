@@ -41,13 +41,17 @@ public class KeyQuest : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) 
         {
             checkPlayersItem();
+            playerInArea = true;
         }
-        playerInArea = true;
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        playerInArea = false;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerInArea = false;
+        }
     }
 
 

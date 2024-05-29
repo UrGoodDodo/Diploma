@@ -28,51 +28,59 @@ public class CheckBookInCurrentPlace : MonoBehaviour
     public delegate void localQuestComplete();
     public static event localQuestComplete localQuestCompleteEvent;
 
+    bool currentBookIsOnPlace = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        playerInArea = true;
-        checkPlayersItem();
+        if (other.transform.gameObject.CompareTag("Player"))
+        {
+            playerInArea = true;
+            checkPlayersItem();
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        playerInArea = false;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (!localQuestIsDone) 
+        if (other.transform.gameObject.CompareTag("Player"))
         {
-            if (playerInArea)
+            playerInArea = false;
+        }
+    }
+
+    void Update()
+    {
+        if (!localQuestIsDone)
+        {
+            if (playerInArea) 
             {
-                if (currentItemInHands != null)
+                if (currentItemInHands != null) 
                 {
-                    if (currentItemIsBook())
+                    if (currentItemIsBook()) 
                     {
-                        if (Input.GetKey(KeyCode.F))
+                        if (Input.GetKeyDown(KeyCode.E))
                         {
+                            Debug.Log("Нажал");
                             placeCurrentBook();
-                            if (currentBookIsRight()) 
+                            if (currentBookIsRight())
                             {
                                 currentBook.gameObject.layer = LayerMask.NameToLayer("Default");
                                 localQuestIsDone = true;
                                 localQuestCompleteEvent?.Invoke();
                             }
                         }
-
                     }
-                }
-
-            }
+                    
+                }   
+            }  
         }
-        
+
+        if (!checkIfCurrentBookIsOnPlace() && currentBookIsOnPlace) 
+        {
+            switchConditionOfTipBook();
+            currentBookIsOnPlace = false;
+        }
+
     }
 
     void placeCurrentBook() 
@@ -81,6 +89,7 @@ public class CheckBookInCurrentPlace : MonoBehaviour
         currentBook = currentItemInHands.gameObject;
         CurItemNullset?.Invoke();
         moveCurrentBook();
+        currentBookIsOnPlace = true;
     }
 
 
@@ -102,9 +111,9 @@ public class CheckBookInCurrentPlace : MonoBehaviour
 
     void moveCurrentBook() 
     {
-        var tt = tipBook.transform.position;
+        var tp = tipBook.transform.position;
         var tr = tipBook.transform.rotation;
-        currentBook.transform.position = new Vector3(tt.x, tt.y, tt.z);
+        currentBook.transform.position = new Vector3(tp.x, tp.y, tp.z);
         currentBook.transform.rotation = tr;
     }
 
@@ -112,5 +121,13 @@ public class CheckBookInCurrentPlace : MonoBehaviour
     {
         var temp = cam.GetComponent<HoldNDrop>();
         currentItemInHands = temp.currentlyHoldItem_;
+    }
+
+    bool checkIfCurrentBookIsOnPlace() 
+    {
+        if (currentBook == null)
+            return false;
+        else
+            return (Mathf.Abs(currentBook.transform.position.x - tipBook.transform.position.x) < 0.5) && (Mathf.Abs(currentBook.transform.position.y - tipBook.transform.position.y) < 0.5) && (Mathf.Abs(currentBook.transform.position.z - tipBook.transform.position.z) < 0.5);
     }
 }
