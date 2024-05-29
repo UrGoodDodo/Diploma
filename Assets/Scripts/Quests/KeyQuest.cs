@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,12 +21,19 @@ public class KeyQuest : MonoBehaviour
     public delegate void questComplete(int num);
     public static event questComplete questCompleteEvent;
 
+    //
+    public static Action KeyTaken;
+
     void FixedUpdate()
     {
         if (!questIsDone)
         {
             if (currentItemInHands != null) 
             {
+
+                if (currentItemInHands.gameObject == key)
+                    KeyTaken?.Invoke();
+
                 if (playerInArea && currentItemInHands.gameObject == key && Input.GetKey(KeyCode.F))
                 {
                     questIsDone = true;
