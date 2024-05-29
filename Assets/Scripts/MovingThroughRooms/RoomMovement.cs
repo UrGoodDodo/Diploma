@@ -21,9 +21,22 @@ public class RoomMovement : MonoBehaviour
 
     static bool canMove = true;
 
-    bool FquestIsDone = true;
+    bool FquestIsDone = false;
 
     bool SquestIsDone = true;
+
+
+    private void OnEnable()
+    {
+        KeyQuest.questCompleteEvent += setActiveDoor;
+        CoreBookQuest.questCompleteEvent += setActiveDoor;
+    }
+
+    private void OnDisable()
+    {
+        KeyQuest.questCompleteEvent -= setActiveDoor;
+        CoreBookQuest.questCompleteEvent -= setActiveDoor;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -86,6 +99,14 @@ public class RoomMovement : MonoBehaviour
     {
         //tip.SetActive(false);
         triggerActive = false;
+    }
+
+    void setActiveDoor(int num) 
+    {
+        if (num == 1)
+            FquestIsDone = true;
+        else
+            SquestIsDone= true;
     }
 
 }

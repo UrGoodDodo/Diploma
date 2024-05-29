@@ -10,6 +10,12 @@ public class HoldNDrop : MonoBehaviour
 
     private bool isDragging = false;
     private Rigidbody currentlyHoldItem;
+
+    public Rigidbody currentlyHoldItem_ 
+    {
+        get { return currentlyHoldItem; }
+    }
+
     private MeshRenderer hitItemRenderer;
     private Vector3 offset;
     private Material[] originalMaterials;
@@ -26,6 +32,17 @@ public class HoldNDrop : MonoBehaviour
         lastHoldItem = new GameObject("Cool GameObject made from Code");
         lastHoldItem.AddComponent<MeshRenderer>();
         originalMaterials = new Material[1];
+    }
+
+    private void OnEnable()
+    {
+        CheckBookInCurrentPlace.CurItemNullset += setCurrentItemNull;
+    }
+
+
+    private void OnDisable()
+    {
+        CheckBookInCurrentPlace.CurItemNullset -= setCurrentItemNull;
     }
 
     void Update()
@@ -47,7 +64,7 @@ public class HoldNDrop : MonoBehaviour
                     lastIsColored = false;
                 }
 
-                if (hitGameObject.gameObject.layer == LayerMask.NameToLayer("Items") && !lastIsColored)
+                if ((hitGameObject.gameObject.layer == LayerMask.NameToLayer("Items") || hitGameObject.gameObject.layer == LayerMask.NameToLayer("QuestTips")) && !lastIsColored)
                 {
                     hitItemRenderer = hitGameObject.gameObject.GetComponent<MeshRenderer>();
                     originalMaterials = hitItemRenderer.materials;
@@ -99,6 +116,11 @@ public class HoldNDrop : MonoBehaviour
     private void MoveWithCollisions(Vector3 targetPosition) 
     {
         currentlyHoldItem.MovePosition(Vector3.Lerp(currentlyHoldItem.transform.position, targetPosition, smoothSpeed * Time.deltaTime));
+    }
+
+    private void setCurrentItemNull() 
+    {
+        currentlyHoldItem = null;
     }
 
 }
