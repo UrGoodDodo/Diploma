@@ -33,11 +33,8 @@ public class AIBehavuor : MonoBehaviour
    // public Animator anim;
     //
     float timer;
-
     //
     public static bool is_searching_key;
-    //
-    public static bool key_is_taken;
 
 
     // Start is called before the first frame update
@@ -57,7 +54,7 @@ public class AIBehavuor : MonoBehaviour
     {
         
         float real_dist_to_player = Vector3.Distance(player.transform.position, ai_position.transform.position);
-        if (is_searching_key && !key_is_taken)
+        if (is_searching_key)
         {
             SearchingKeyAI();
         }
@@ -125,7 +122,6 @@ public class AIBehavuor : MonoBehaviour
 
     private void SearchingKeyAI()
     {
-        Debug.Log("IsSearching");
       //  anim.SetBool("IsSearching", true);
        // anim.Play("Search");
     }

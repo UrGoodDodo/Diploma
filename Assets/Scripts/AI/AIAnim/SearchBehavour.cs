@@ -9,13 +9,10 @@ public class SearchBehavour : StateMachineBehaviour
     List<Transform> points = new List<Transform>();
     NavMeshAgent ai_nav;
 
-    //
-    static public int TriggerNumber;
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //timer = 0;
-        //Transform pointObject = GameObject.FindGameObjectWithTag($"Points{TriggerNumber}").transform;
+        //Transform pointObject = GameObject.FindGameObjectWithTag("Points").transform;
         //foreach (Transform p in pointObject)
         //{
         //    points.Add(p);

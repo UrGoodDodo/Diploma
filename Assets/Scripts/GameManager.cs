@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
         LightBehavour.FlashlightExist += Exist;
         TriggerR1Behavour.StartedKeyTrigger += SearchingKey;
         TriggerR2Behavour.StartBookTrigger += BooksPuzzle;
-        KeyQuest.KeyTaken += KeyWasTaken;
-        FlashlightChip.FlashlightChipTaken += Taken;
     }
 
     private void OnDisable()
@@ -20,8 +18,6 @@ public class GameManager : MonoBehaviour
         LightBehavour.FlashlightExist -= Exist;
         TriggerR1Behavour.StartedKeyTrigger -= SearchingKey;
         TriggerR2Behavour.StartBookTrigger -= BooksPuzzle;
-        KeyQuest.KeyTaken -= KeyWasTaken;
-        FlashlightChip.FlashlightChipTaken -= Taken;
     }
 
     public void Exist()
@@ -39,12 +35,6 @@ public class GameManager : MonoBehaviour
         //здесь надо написать код, меняющий в скрипте лайтинга значение переменной flashlight_was_taken на тру 
     }
 
-    public void KeyWasTaken()
-    {
-        if (!AIBehavuor.key_is_taken)
-            AIBehavuor.key_is_taken = true;
-    }
-
     public void SearchingKey()
     {
         TriggerR1Behavour.IsTriggeredR1 = true;
@@ -59,10 +49,5 @@ public class GameManager : MonoBehaviour
     public void RoomDark()
     {
         LightBehavour.room_dark = true;
-    }
-
-    public void InSearchTrigger()
-    {
-
     }
 }

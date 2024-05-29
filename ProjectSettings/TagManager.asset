@@ -13,13 +13,10 @@ TagManager:
   - Green_book
   - Blue_book
   - Room_is_dark
+  - Key_trigger
   - AI
   - KeyPoints
   - Book
-  - Points1
-  - Points2
-  - Points3
-  - Points0
   layers:
   - Default
   - TransparentFX
