@@ -1135,6 +1135,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e46f2bdd1727e12498101ac44e1731bb, type: 3}
+--- !u!1 &782571281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7286515475558653960, guid: e46f2bdd1727e12498101ac44e1731bb, type: 3}
+  m_PrefabInstance: {fileID: 782571280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &782571282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6164963425433646344, guid: e46f2bdd1727e12498101ac44e1731bb, type: 3}
+  m_PrefabInstance: {fileID: 782571280}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &817606000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1157,7 +1167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4340778401280367374, guid: 51f42d2365277544381c3adba48de126, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5000019
+      value: 9.12
       objectReference: {fileID: 0}
     - target: {fileID: 4340778401280367374, guid: 51f42d2365277544381c3adba48de126, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1697,6 +1707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Roof
       objectReference: {fileID: 0}
+    - target: {fileID: 6900826728324950258, guid: 3ec963e1c36e8854b922bb138c818e33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7134549671609036553, guid: 3ec963e1c36e8854b922bb138c818e33, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1916,6 +1930,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3944864956071426367, guid: 383a3663f5053144784eb7d133746bb5, type: 3}
+      propertyPath: noteText
+      value: 
+      objectReference: {fileID: 782571281}
+    - target: {fileID: 3944864956071426367, guid: 383a3663f5053144784eb7d133746bb5, type: 3}
+      propertyPath: noteBackground
+      value: 
+      objectReference: {fileID: 782571282}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -27,6 +27,9 @@ public class HoldNDrop : MonoBehaviour
 
     private bool lastIsColored = false;
 
+    public delegate void Note(bool flag);
+    public static event Note noteChecked; 
+
     private void Start()
     {
         lastHoldItem = new GameObject("Cool GameObject made from Code");
@@ -64,8 +67,13 @@ public class HoldNDrop : MonoBehaviour
                     lastIsColored = false;
                 }
 
-                if ((hitGameObject.gameObject.layer == LayerMask.NameToLayer("Items") || hitGameObject.gameObject.layer == LayerMask.NameToLayer("QuestTips")) && !lastIsColored)
+                if ((hitGameObject.gameObject.layer == LayerMask.NameToLayer("Items") || hitGameObject.gameObject.layer == LayerMask.NameToLayer("QuestTips") || hitGameObject.gameObject.CompareTag("Note")) && !lastIsColored)
                 {
+                    if (hitGameObject.gameObject.CompareTag("Note"))
+                        noteChecked?.Invoke(true);
+                    else
+                        noteChecked?.Invoke(false);
+
                     hitItemRenderer = hitGameObject.gameObject.GetComponent<MeshRenderer>();
                     originalMaterials = hitItemRenderer.materials;
                     Material[] tmats = new Material[originalMaterials.Length + 1];

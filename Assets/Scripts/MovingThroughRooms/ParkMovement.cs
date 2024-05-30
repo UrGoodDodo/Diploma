@@ -20,9 +20,12 @@ public class ParkMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // tip.SetActive(true);
-        triggerActive = true;
-        otherCollider = other;
+        if (other.gameObject.CompareTag("Player")) 
+        {
+            // tip.SetActive(true);
+            triggerActive = true;
+            otherCollider = other;
+        }   
     }
 
     void FixedUpdate()
@@ -61,7 +64,10 @@ public class ParkMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //tip.SetActive(false);
-        triggerActive = false;
+        if (other.gameObject.CompareTag("Player")) 
+        {
+            //tip.SetActive(false);
+            triggerActive = false;
+        } 
     }
 }

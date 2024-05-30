@@ -17,6 +17,7 @@ TagManager:
   - AI
   - KeyPoints
   - Book
+  - Note
   layers:
   - Default
   - TransparentFX

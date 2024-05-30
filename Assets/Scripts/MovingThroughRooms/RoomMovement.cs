@@ -43,8 +43,11 @@ public class RoomMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // tip.SetActive(true);
-        triggerActive = true;
-        otherCollider = other;
+        if (other.gameObject.CompareTag("Player")) 
+        {
+            triggerActive = true;
+            otherCollider = other;
+        }
     }
     void FixedUpdate() 
     {
@@ -102,8 +105,11 @@ public class RoomMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            triggerActive = false;
+        }
         //tip.SetActive(false);
-        triggerActive = false;
     }
 
     void setActiveDoor(int num) 

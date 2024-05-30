@@ -27,8 +27,12 @@ public class SceneMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // tip.SetActive(true);
-        triggerActive = true;
+        if (other.gameObject.CompareTag("Player")) 
+        {
+            // tip.SetActive(true);
+            triggerActive = true;
+        }
+            
     }
 
     void FixedUpdate()
@@ -47,8 +51,11 @@ public class SceneMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //tip.SetActive(false);
-        triggerActive = false;
+        if (other.gameObject.CompareTag("Player")) 
+        {
+            //tip.SetActive(false);
+            triggerActive = false;
+        }   
     }
 
     void SwitchScene(int num)
