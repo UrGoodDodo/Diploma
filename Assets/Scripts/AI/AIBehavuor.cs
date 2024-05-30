@@ -8,7 +8,7 @@ public class AIBehavuor : MonoBehaviour
 {
 
     //Component of AI navigation
-    public NavMeshAgent ai_nav;
+    static public NavMeshAgent ai_nav;
     //Component of player
     public Transform player;
     //AI`s eyes
@@ -38,21 +38,30 @@ public class AIBehavuor : MonoBehaviour
 
     public static bool key_was_found;
 
+    static public List<Transform> points = new List<Transform>();
 
     // Start is called before the first frame update
     void Start()
     {
+        ai_nav = GetComponent<NavMeshAgent>();
         timer = 0;
         if (ai_speed == 0)
             ai_speed = 2f;
         else
             ai_nav.speed = ai_speed;
         anim = GetComponent<Animator>();
+        Transform pointObject = GameObject.FindGameObjectWithTag("KeyPoints").transform;
+        foreach (Transform p in pointObject)
+        {
+            points.Add(p);
+        }
+        ai_nav = anim.GetComponent<NavMeshAgent>();
+        ai_nav.SetDestination(points[0].position);
         //anim.Play("idle");
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         float real_dist_to_player = Vector3.Distance(player.transform.position, ai_position.transform.position);
@@ -92,7 +101,6 @@ public class AIBehavuor : MonoBehaviour
     [System.Obsolete]
     protected void Wait()
     {
-
         ai_nav.Stop();
         anim.SetBool("IsWalking", false);
         StartCoroutine(StopTime());
@@ -124,7 +132,7 @@ public class AIBehavuor : MonoBehaviour
 
     private void SearchingKeyAI()
     {
-        anim.SetBool("IsSearching", true);
+        //anim.SetBool("IsSearching", true);
         anim.Play("search");
     }
 

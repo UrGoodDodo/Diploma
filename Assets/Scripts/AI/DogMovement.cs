@@ -20,21 +20,22 @@ public class DogMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         ChangeRoom?.Invoke();
-        if(current_room == 0)
+        if(current_room == 0 && (!Dog1.active))
         {
             Dog1.SetActive(true);
             Dog2.SetActive(false);
             Dog3.SetActive(false);
-        }else if(current_room == 1)
+        }
+        else if(current_room == 1 && (!Dog2.active))
         {
             Dog1.SetActive(false);
             Dog2.SetActive(true);
             Dog3.SetActive(false);
         }
-        else
+        else if(current_room == 2 && (!Dog3.active))
         {
             Dog1.SetActive(false);
             Dog2.SetActive(false);

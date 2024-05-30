@@ -12,9 +12,11 @@ public class TriggerR1Behavour : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if(!IsTriggeredR1)
-             Debug.Log("Door dialoge");
-             StartedKeyTrigger?.Invoke();
+            if(!IsTriggeredR1 && !AIBehavuor.key_was_found)
+            {
+                Debug.Log("Door dialoge");
+                StartedKeyTrigger?.Invoke();
+            }
         }
             
     }

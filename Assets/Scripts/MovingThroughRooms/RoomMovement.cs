@@ -108,6 +108,9 @@ public class RoomMovement : MonoBehaviour
 
     void setActiveDoor(int num) 
     {
+        if (AIBehavuor.is_searching_key)
+            AIBehavuor.is_searching_key = false;
+
         if (num == 1)
             FquestIsDone = true;
         else
