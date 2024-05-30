@@ -30,11 +30,13 @@ public class AIBehavuor : MonoBehaviour
     //private float rotation_speed_ai;
     //
     //
-   // public Animator anim;
+    Animator anim;
     //
     float timer;
     //
     public static bool is_searching_key;
+
+    public static bool key_was_found;
 
 
     // Start is called before the first frame update
@@ -45,8 +47,8 @@ public class AIBehavuor : MonoBehaviour
             ai_speed = 2f;
         else
             ai_nav.speed = ai_speed;
-        //anim = GetComponent<Animator>();
-        //anim.Play("Idle");
+        anim = GetComponent<Animator>();
+        //anim.Play("idle");
     }
 
     // Update is called once per frame
@@ -80,8 +82,8 @@ public class AIBehavuor : MonoBehaviour
         if(ai_nav.isStopped)
             ai_nav.Resume();
         // RotationAI();
-       // anim.SetBool("IsWalking", true);
-       // anim.Play("Walk");
+        anim.SetBool("IsWalking", true);
+        anim.Play("walking");
         dest = player.position;
         ai_nav.destination = dest;
     }
@@ -92,9 +94,9 @@ public class AIBehavuor : MonoBehaviour
     {
 
         ai_nav.Stop();
-      //  anim.SetBool("IsWalking", false);
-       // StartCoroutine(StopTime());
-       // anim.Play("Idle");
+        anim.SetBool("IsWalking", false);
+        StartCoroutine(StopTime());
+        anim.Play("idle");
     }
 
     //Player is in the field of view of AI
@@ -122,8 +124,8 @@ public class AIBehavuor : MonoBehaviour
 
     private void SearchingKeyAI()
     {
-      //  anim.SetBool("IsSearching", true);
-       // anim.Play("Search");
+        anim.SetBool("IsSearching", true);
+        anim.Play("search");
     }
 
     IEnumerator StopTime()

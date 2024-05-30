@@ -25,6 +25,8 @@ public class RoomMovement : MonoBehaviour
 
     bool SquestIsDone = false;
 
+    public static int dog_room;
+
 
     private void OnEnable()
     {
@@ -54,17 +56,20 @@ public class RoomMovement : MonoBehaviour
                 {
                     if (curRoom == 1 && FquestIsDone) 
                     {
+                        dog_room = curRoom;
                         MovePlayer(otherCollider, positionToMove);
                         StartCoroutine(Wait());
                     }
                     if (curRoom == 2 && SquestIsDone)
                     {
+                        dog_room = curRoom;
                         MovePlayer(otherCollider, positionToMove);
                         StartCoroutine(Wait());
                     }
                 }
                 else
                 {
+                    dog_room = curRoom;
                     MovePlayer(otherCollider, positionToMove);
                     StartCoroutine(Wait());
                 }
