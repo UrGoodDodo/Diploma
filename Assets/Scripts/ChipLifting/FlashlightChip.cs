@@ -14,8 +14,9 @@ public class FlashlightChip : MonoBehaviour
 
     public static Action FlashlightTaken;
 
-    void FixedUpdate()
+    void Update()
     {
+        checkPlayersItem();
         if (currentItemInHands != null)
         {
             if (in_zone && currentItemInHands.gameObject.tag == "Flashlight_chip" && Input.GetKeyDown(KeyCode.E))
@@ -30,7 +31,6 @@ public class FlashlightChip : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            checkPlayersItem();
             in_zone = true;
         }
     }

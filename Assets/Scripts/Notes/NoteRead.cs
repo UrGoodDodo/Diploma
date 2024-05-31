@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,9 +16,11 @@ public class NoteRead : MonoBehaviour
 
     Transform noteInWorld;
 
-    public GameObject noteBackground;
+    public UnityEngine.UI.Image uiBackground;
 
-    public GameObject noteText;
+    public TextMeshProUGUI uiTextName;
+
+    bool switchedUi = false;
 
 
 
@@ -66,7 +69,17 @@ public class NoteRead : MonoBehaviour
 
     void switchNoteUisState() 
     {
-        noteBackground.SetActive(!noteBackground.activeSelf);
-        noteText.SetActive(!noteText.activeSelf);
+        if (!switchedUi)
+        {
+            uiTextName.alpha = 1f;
+            uiBackground.color = new Color(uiBackground.color.r, uiBackground.color.g, uiBackground.color.b, 0.6f);
+            switchedUi = true;
+        }
+        else 
+        {
+            uiTextName.alpha = 0f;
+            uiBackground.color = new Color(uiBackground.color.r, uiBackground.color.g, uiBackground.color.b, 0f);
+            switchedUi = false;
+        }
     }
 }

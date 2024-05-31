@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static LinearDialog;
 
 public class DialogCore : MonoBehaviour
 {
@@ -14,6 +15,17 @@ public class DialogCore : MonoBehaviour
     List<string> sceneDialogs;
     bool gotDialogs = false;
 
+    public List<GameObject> dialogTiggers = new List<GameObject>();
+
+    int countPlayedDialogs = 0;
+
+    public int CountPlayedDialogs
+    {
+        get { return countPlayedDialogs+1; }
+    }
+
+    bool currentDialogType = false; // false - non linear ; true - linear
+
     public bool GotDialogs_ 
     {
         get { return gotDialogs; }
@@ -22,12 +34,18 @@ public class DialogCore : MonoBehaviour
 
     private void OnEnable()
     {
-        CurDialog.startedDialog += changeDialogStatus;
+        LinearDialog.switchCoreDialogStatus += changeDialogStatus;
+        LinearDialog.startedForwardDialog += SwitchDialogType;
+        NonLinearDialog.switchCoreDialogStatus += changeDialogStatus;
+        NonLinearDialog.startedMiscDialog += SwitchDialogType;
     }
 
     private void OnDisable()
     {
-        CurDialog.startedDialog -= changeDialogStatus;
+        LinearDialog.switchCoreDialogStatus -= changeDialogStatus;
+        LinearDialog.startedForwardDialog -= SwitchDialogType;
+        NonLinearDialog.switchCoreDialogStatus -= changeDialogStatus;
+        NonLinearDialog.startedMiscDialog -= SwitchDialogType;
     }
 
     void Start()
@@ -47,6 +65,15 @@ public class DialogCore : MonoBehaviour
     void changeDialogStatus() 
     {
         dialogsAreActive = !dialogsAreActive;
+        if (!dialogsAreActive && currentDialogType)
+        {
+            dialogTiggers[countPlayedDialogs].SetActive(false);
+            countPlayedDialogs++;
+            if (countPlayedDialogs <= dialogTiggers.Count - 1) 
+            {
+                dialogTiggers[countPlayedDialogs].SetActive(true);
+            }
+        }
     }
 
     void getCurrentDialogs(int sceneNum)
@@ -59,5 +86,10 @@ public class DialogCore : MonoBehaviour
     public void getCurrentDialog(int numDialog, out string dialog) 
     {
         dialog = sceneDialogs.Count >= numDialog ? sceneDialogs[numDialog-1] : 0.ToString();
+    }
+
+    void SwitchDialogType(bool typeOfDialog) 
+    {
+        currentDialogType = typeOfDialog;
     }
 }

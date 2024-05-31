@@ -23,8 +23,9 @@ public class KeyQuest : MonoBehaviour
 
     public static Action KeyIsFound;
 
-    void FixedUpdate()
+    void Update()
     {
+        checkPlayersItem();
         if (!questIsDone)
         {
             if (currentItemInHands != null) 
@@ -32,7 +33,7 @@ public class KeyQuest : MonoBehaviour
                 if (currentItemInHands.gameObject == key)
                     KeyIsFound?.Invoke();
 
-                if (playerInArea && currentItemInHands.gameObject == key && Input.GetKey(KeyCode.F))
+                if (playerInArea && currentItemInHands.gameObject == key && Input.GetKeyDown(KeyCode.E))
                 {
                     questIsDone = true;
                     questCompleteEvent?.Invoke(1);
@@ -46,7 +47,6 @@ public class KeyQuest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            checkPlayersItem();
             playerInArea = true;
         }
         

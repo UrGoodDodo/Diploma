@@ -1,5 +1,90 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &129098860657959528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239825783765905464}
+  - component: {fileID: 6530938975295137270}
+  - component: {fileID: 4421437064429312683}
+  - component: {fileID: 5910450333372677989}
+  m_Layer: 0
+  m_Name: DialogTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1239825783765905464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129098860657959528}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6862754593188916339}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6530938975295137270
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129098860657959528}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.05, z: 0.05}
+  m_Center: {x: 0, y: 0.47926018, z: 0}
+--- !u!114 &4421437064429312683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129098860657959528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a309b1da73b39a4ca332ccd7b183665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5910450333372677989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129098860657959528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce9a5af96bf3bb49b4d322a250e553c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogNumber: 3
+  DialogCore: {fileID: 0}
+  uiBackground: {fileID: 0}
+  uiTextName: {fileID: 0}
+  uiText: {fileID: 0}
+  disabledWiaDialog: []
 --- !u!1 &2171128633296115699
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +206,7 @@ Transform:
   - {fileID: 7693243099541586260}
   - {fileID: 2288970497920479996}
   - {fileID: 1034828807278006488}
+  - {fileID: 1239825783765905464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5859491344899378457
@@ -138,6 +224,7 @@ MonoBehaviour:
   player_camera: {fileID: 0}
   ai_position: {fileID: 0}
   flashlight: {fileID: 351808294331861618}
+  obj_for_help: {fileID: 0}
 --- !u!114 &2220569919775903036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf86d0f31c57fee41818c88aa89c8fb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai_nav: {fileID: 1003632371130839614}
   player: {fileID: 0}
   ai_eyes: {fileID: 7693243099541586260}
   ai_position: {fileID: 0}

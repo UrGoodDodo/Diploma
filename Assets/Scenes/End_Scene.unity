@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 211575024}
   m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: eb272e85094b95d45bfc9fd34711ef67, type: 2}
   m_LightingSettings: {fileID: 1099454864}
 --- !u!196 &4
 NavMeshSettings:
@@ -1145,6 +1145,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6164963425433646344, guid: e46f2bdd1727e12498101ac44e1731bb, type: 3}
   m_PrefabInstance: {fileID: 782571280}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &782571283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6081592905999395691, guid: e46f2bdd1727e12498101ac44e1731bb, type: 3}
+  m_PrefabInstance: {fileID: 782571280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782571281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &782571284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5992052529594613319, guid: e46f2bdd1727e12498101ac44e1731bb, type: 3}
+  m_PrefabInstance: {fileID: 782571280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782571282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &817606000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1934,6 +1956,14 @@ PrefabInstance:
       propertyPath: noteText
       value: 
       objectReference: {fileID: 782571281}
+    - target: {fileID: 3944864956071426367, guid: 383a3663f5053144784eb7d133746bb5, type: 3}
+      propertyPath: uiTextName
+      value: 
+      objectReference: {fileID: 782571283}
+    - target: {fileID: 3944864956071426367, guid: 383a3663f5053144784eb7d133746bb5, type: 3}
+      propertyPath: uiBackground
+      value: 
+      objectReference: {fileID: 782571284}
     - target: {fileID: 3944864956071426367, guid: 383a3663f5053144784eb7d133746bb5, type: 3}
       propertyPath: noteBackground
       value: 
