@@ -9,6 +9,8 @@ public class SearchBehavour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.SetBool("IsSearching", true);
+        animator.SetBool("IsWalking", false);
         timer = 0; 
     }
 
@@ -16,7 +18,7 @@ public class SearchBehavour : StateMachineBehaviour
     {
 
         timer += Time.deltaTime;
-        if (timer > 10)
+        if (timer > 8)
         {
             animator.SetBool("IsSearching", false);
             animator.SetBool("IsWalking", true);

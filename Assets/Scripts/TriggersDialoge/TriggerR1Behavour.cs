@@ -12,9 +12,8 @@ public class TriggerR1Behavour : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if(!IsTriggeredR1 && !AIBehavuor.key_was_found)
+            if(!IsTriggeredR1 && !AIBehavuor.key_was_found && LightBehavour.flashlight_was_taken)
             {
-                Debug.Log("Door dialoge");
                 StartedKeyTrigger?.Invoke();
             }
         }

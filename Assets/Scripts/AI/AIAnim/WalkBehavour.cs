@@ -12,6 +12,7 @@ public class WalkBehavour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.SetBool("IsSearching", false);
         timer = 0;
         
     }
@@ -25,9 +26,11 @@ public class WalkBehavour : StateMachineBehaviour
             {
                 AIBehavuor.ai_nav.SetDestination(AIBehavuor.points[Random.Range(0, AIBehavuor.points.Count)].position);
             }
+
             timer += Time.deltaTime;
-            if (timer > 5)
+            if (timer > 3)
             {
+
                 animator.SetBool("IsSearching", true);
                 animator.SetBool("IsWalking", false);
                 animator.Play("search");

@@ -7,30 +7,23 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         RoomIsDarkTrigger.RoomIsDark += RoomDark;
-        LightBehavour.FlashlightExist += Exist;
         TriggerR1Behavour.StartedKeyTrigger += SearchingKey;
         TriggerR2Behavour.StartBookTrigger += BooksPuzzle;
         KeyQuest.KeyIsFound += KeyFound;
         FlashlightChip.FlashlightTaken += Taken;
         DogMovement.ChangeRoom += InNewRoom;
+        AIBehavuor.IsHelping += IsNeedHelp;
     }
 
     private void OnDisable()
     {
         RoomIsDarkTrigger.RoomIsDark -= RoomDark;
-        LightBehavour.FlashlightExist -= Exist;
         TriggerR1Behavour.StartedKeyTrigger -= SearchingKey;
         TriggerR2Behavour.StartBookTrigger -= BooksPuzzle;
         KeyQuest.KeyIsFound -= KeyFound;
         FlashlightChip.FlashlightTaken -= Taken;
         DogMovement.ChangeRoom -= InNewRoom;
-    }
-
-    public void Exist()
-    {
-        if(!LightBehavour.flashlight_exist)
-            LightBehavour.flashlight_exist = true;
-        
+        AIBehavuor.IsHelping -= IsNeedHelp;
     }
 
     public void Taken()
@@ -45,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         TriggerR1Behavour.IsTriggeredR1 = true;
         AIBehavuor.is_searching_key = true;
+        AIBehavuor.search_number = 0;
     }
 
     public void BooksPuzzle()
@@ -54,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     public void RoomDark()
     {
-        LightBehavour.room_dark = true;
+        LightBehavour.room_dark = false;
     }
 
     public void KeyFound()
@@ -66,6 +60,12 @@ public class GameManager : MonoBehaviour
     public void InNewRoom()
     {
         DogMovement.current_room = RoomMovement.dog_room;
+    }
+
+    public void IsNeedHelp()
+    {
+        if (!LightBehavour.helping)
+            LightBehavour.helping = true;
     }
 
 }

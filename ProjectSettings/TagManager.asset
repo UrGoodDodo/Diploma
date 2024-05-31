@@ -15,9 +15,10 @@ TagManager:
   - Room_is_dark
   - Key_trigger
   - AI
-  - KeyPoints
   - Book
   - Note
+  - Points0
+  - PointFH
   layers:
   - Default
   - TransparentFX

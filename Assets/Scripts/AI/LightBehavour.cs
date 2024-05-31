@@ -12,21 +12,21 @@ public class LightBehavour : MonoBehaviour
     public Transform ai_position;
     //
     public Light flashlight;
+
+    //
+    public GameObject obj_for_help;
+
     //View distance AI
     float view_dist = 100f;
     //
     bool flashlight_on;
     //
-    bool flashlight_off;
-    //
-    public static bool room_dark;
+    public static bool room_dark = true;
 
     //
     public static bool flashlight_was_taken = false;
-    //
-    public static bool flashlight_exist = false;
-    //
-    public static Action FlashlightExist;
+
+    public static bool helping;
 
     // Start is called before the first frame update
     void Start()
@@ -54,9 +54,17 @@ public class LightBehavour : MonoBehaviour
     private void RotateFlashlight()
     {
         RaycastHit hit;
-        if (Physics.Raycast(player_camera.transform.position, player_camera.forward, out hit, view_dist))
+        if (!helping)
         {
-            flashlight.transform.rotation = Quaternion.RotateTowards(player_camera.rotation, Quaternion.LookRotation(hit.point, Vector3.up), 5 * Time.deltaTime);
+            if (Physics.Raycast(player_camera.transform.position, player_camera.forward, out hit, view_dist))
+            {
+                flashlight.transform.rotation = Quaternion.RotateTowards(player_camera.rotation, Quaternion.LookRotation(hit.point, Vector3.up), 5 * Time.deltaTime);
+            }
+        }
+        else
+        {
+            if (obj_for_help != null)
+                flashlight.transform.LookAt(obj_for_help.transform);
         }
     }
 
@@ -78,14 +86,6 @@ public class LightBehavour : MonoBehaviour
             flashlight.enabled = false;
             flashlight_on = false;
         }
-    }
-
-    //
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(flashlight_was_taken)
-            if(!flashlight_exist)
-                FlashlightExist?.Invoke();
     }
 
 

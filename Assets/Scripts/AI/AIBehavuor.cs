@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class AIBehavuor : MonoBehaviour
     //Player`s position
     Vector3 dest;
     //Angle of AI view
-    [Range(0f, 360f)] float view_angel = 120f;
+    [Range(0f, 360f)] float view_angel = 220f;
     //View distance AI
     float view_dist = 15f;
     //Detection distance AI
@@ -40,6 +41,12 @@ public class AIBehavuor : MonoBehaviour
 
     static public List<Transform> points = new List<Transform>();
 
+    static public int search_number = 0;
+
+    static public bool is_helping;
+
+    public static Action IsHelping;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,14 +57,20 @@ public class AIBehavuor : MonoBehaviour
         else
             ai_nav.speed = ai_speed;
         anim = GetComponent<Animator>();
-        Transform pointObject = GameObject.FindGameObjectWithTag("KeyPoints").transform;
-        foreach (Transform p in pointObject)
+        if (GameObject.FindGameObjectWithTag($"Points{search_number}"))
         {
-            points.Add(p);
+            Transform pointObject = GameObject.FindGameObjectWithTag($"Points{search_number}").transform;
+            if (pointObject != null)
+            {
+                foreach (Transform p in pointObject)
+                {
+                    points.Add(p);
+                }
+                ai_nav = anim.GetComponent<NavMeshAgent>();
+                ai_nav.SetDestination(points[0].position);
+            }
         }
-        ai_nav = anim.GetComponent<NavMeshAgent>();
-        ai_nav.SetDestination(points[0].position);
-        //anim.Play("idle");
+        
     }
 
     // Update is called once per frame
@@ -92,6 +105,7 @@ public class AIBehavuor : MonoBehaviour
             ai_nav.Resume();
         // RotationAI();
         anim.SetBool("IsWalking", true);
+        anim.SetBool("IsIdle", false);
         anim.Play("walking");
         dest = player.position;
         ai_nav.destination = dest;
@@ -103,7 +117,7 @@ public class AIBehavuor : MonoBehaviour
     {
         ai_nav.Stop();
         anim.SetBool("IsWalking", false);
-        StartCoroutine(StopTime());
+        anim.SetBool("IsIdle", true);
         anim.Play("idle");
     }
 
@@ -132,8 +146,20 @@ public class AIBehavuor : MonoBehaviour
 
     private void SearchingKeyAI()
     {
-        //anim.SetBool("IsSearching", true);
-        anim.Play("search");
+        if(!anim.GetBool("IsSearching") && !anim.GetBool("IsWalking"))
+            anim.Play("search");
+    }
+
+    private void HelpAI()
+    {
+        if (GameObject.FindGameObjectWithTag("PointFH"))
+        {
+            var p = GameObject.FindGameObjectWithTag("PointFH").transform;
+            ai_nav.SetDestination(p.position);
+            IsHelping?.Invoke();
+        }
+        //если объект не нал, то сюда передаем значение после касания триггера, что прошло нное количество времени и собаке надо подойти к точке и посветить на объект
+ 
     }
 
     IEnumerator StopTime()
