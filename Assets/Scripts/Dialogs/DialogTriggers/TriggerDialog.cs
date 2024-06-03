@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerDialog : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class TriggerDialog : MonoBehaviour
             if (!DialogCore.dialogsAreActive && ld.GotDialog && other.CompareTag("Player"))
             {
                 ld.clauseFullFilled();
+                if(SceneManager.GetActiveScene().buildIndex == 0 && !AIBehavuor.is_start)
+                {
+                    AIBehavuor.is_start = true;
+                } 
             }
         }
         else if (ld == null && nld != null) 

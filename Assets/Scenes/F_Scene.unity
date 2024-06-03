@@ -1798,6 +1798,22 @@ PrefabInstance:
       propertyPath: obj_for_help
       value: 
       objectReference: {fileID: 8628470}
+    - target: {fileID: 3650760855323291145, guid: 4db26fc5ca9066647a1733e0e0def601, type: 3}
+      propertyPath: m_Size.x
+      value: 1.4949889
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650760855323291145, guid: 4db26fc5ca9066647a1733e0e0def601, type: 3}
+      propertyPath: m_Size.z
+      value: 1.4084854
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650760855323291145, guid: 4db26fc5ca9066647a1733e0e0def601, type: 3}
+      propertyPath: m_Center.x
+      value: 0.024708033
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650760855323291145, guid: 4db26fc5ca9066647a1733e0e0def601, type: 3}
+      propertyPath: m_Center.z
+      value: -0.016083717
+      objectReference: {fileID: 0}
     - target: {fileID: 4978072249825510152, guid: 4db26fc5ca9066647a1733e0e0def601, type: 3}
       propertyPath: m_Controller
       value: 
@@ -3987,6 +4003,7 @@ GameObject:
   - component: {fileID: 1184915560}
   - component: {fileID: 1184915559}
   - component: {fileID: 1184915558}
+  - component: {fileID: 1184915561}
   m_Layer: 0
   m_Name: PuzzleDialogTrigger
   m_TagString: Untagged
@@ -4024,6 +4041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41f7153d83fd924988bf6a3c6ea03e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialog_num: 3
+  active_trigger: {fileID: 167890287153212836}
 --- !u!4 &1184915560
 Transform:
   m_ObjectHideFlags: 0
@@ -4039,6 +4058,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1184915561
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184915557}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.75184774, y: 1, z: 1.2488852}
+  m_Center: {x: 0.057865858, y: 0, z: -0.12444258}
 --- !u!4 &1196882720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4148515015810143159, guid: 8e331ddef3fd5cf4d886bfda1e507228, type: 3}
@@ -8439,6 +8479,10 @@ PrefabInstance:
     - target: {fileID: 1516163259360575966, guid: e979a6a77dfebb8428dbdcbcbacdc1ed, type: 3}
       propertyPath: m_Name
       value: DoorTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516163259360575966, guid: e979a6a77dfebb8428dbdcbcbacdc1ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2680501806214744942, guid: e979a6a77dfebb8428dbdcbcbacdc1ed, type: 3}
       propertyPath: tip

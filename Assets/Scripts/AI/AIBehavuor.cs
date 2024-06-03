@@ -47,6 +47,8 @@ public class AIBehavuor : MonoBehaviour
 
     public static Action IsHelping;
 
+    public static bool is_start = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +84,11 @@ public class AIBehavuor : MonoBehaviour
         {
             SearchingKeyAI();
         }
+        else if (is_helping)
+        {
+            Debug.Log("Help");
+            HelpAI();
+        }
         else
         {
             if (real_dist_to_player <= detection_dist || IsInView())
@@ -101,14 +108,17 @@ public class AIBehavuor : MonoBehaviour
     //State of following AI
     protected void Follow()
     {
-        if(ai_nav.isStopped)
-            ai_nav.Resume();
-        // RotationAI();
-        anim.SetBool("IsWalking", true);
-        anim.SetBool("IsIdle", false);
-        anim.Play("walking");
-        dest = player.position;
-        ai_nav.destination = dest;
+        if (is_start)
+        {
+            if (ai_nav.isStopped)
+                ai_nav.Resume();
+            // RotationAI();
+            anim.SetBool("IsWalking", true);
+            anim.SetBool("IsIdle", false);
+            anim.Play("walking");
+            dest = player.position;
+            ai_nav.destination = dest;
+        }
     }
 
     //State of waiting AI
@@ -155,8 +165,20 @@ public class AIBehavuor : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("PointFH"))
         {
             var p = GameObject.FindGameObjectWithTag("PointFH").transform;
-            ai_nav.SetDestination(p.position);
-            IsHelping?.Invoke();
+            if(Vector3.Distance(p.transform.position, ai_position.transform.position) <= 1.0f)
+            {
+                Wait();
+                IsHelping?.Invoke();
+            }
+            else
+            {
+                if (ai_nav.isStopped)
+                    ai_nav.Resume();
+                anim.SetBool("IsWalking", true);
+                anim.Play("walking");
+                dest = p.position;
+                ai_nav.destination = dest;
+            }
         }
         //если объект не нал, то сюда передаем значение после касания триггера, что прошло нное количество времени и собаке надо подойти к точке и посветить на объект
  
