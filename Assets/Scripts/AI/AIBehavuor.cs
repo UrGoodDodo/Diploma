@@ -86,7 +86,7 @@ public class AIBehavuor : MonoBehaviour
         }
         else if (is_helping)
         {
-            Debug.Log("Help");
+            //Debug.Log("Help");
             HelpAI();
         }
         else

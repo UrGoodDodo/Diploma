@@ -28,7 +28,8 @@ public class HoldNDrop : MonoBehaviour
     private bool lastIsColored = false;
 
     public delegate void Note(bool flag);
-    public static event Note noteChecked; 
+    public static event Note noteChecked;
+    public ChangeTipStatus tip;
 
     private void Start()
     {
@@ -60,6 +61,18 @@ public class HoldNDrop : MonoBehaviour
             if (Physics.Raycast(ray, out hit)) 
             {
                 GameObject hitGameObject = hit.collider.gameObject;
+
+                if (hitGameObject.gameObject.CompareTag("Note")) 
+                {
+                    noteChecked?.Invoke(true);
+                    tip.ChangeTipState(true);
+                } 
+                else
+                {
+                    noteChecked?.Invoke(false);
+                    tip.ChangeTipState(false);
+                }
+
                 if (hitGameObject != lastHoldItem)
                 {
                     MeshRenderer lastHoldItemRenderer = lastHoldItem.GetComponent<MeshRenderer>();
@@ -69,10 +82,6 @@ public class HoldNDrop : MonoBehaviour
 
                 if ((hitGameObject.gameObject.layer == LayerMask.NameToLayer("Items") || hitGameObject.gameObject.layer == LayerMask.NameToLayer("QuestTips") || hitGameObject.gameObject.CompareTag("Note")) && !lastIsColored)
                 {
-                    if (hitGameObject.gameObject.CompareTag("Note"))
-                        noteChecked?.Invoke(true);
-                    else
-                        noteChecked?.Invoke(false);
 
                     hitItemRenderer = hitGameObject.gameObject.GetComponent<MeshRenderer>();
                     originalMaterials = hitItemRenderer.materials;

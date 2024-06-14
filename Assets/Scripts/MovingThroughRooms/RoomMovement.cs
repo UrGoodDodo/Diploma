@@ -7,8 +7,6 @@ using System;
 
 public class RoomMovement : MonoBehaviour
 {
-    //public GameObject tip;
-
     public bool forwardDirection = true;
 
     public int curRoom = 1;
@@ -17,7 +15,7 @@ public class RoomMovement : MonoBehaviour
 
     Collider otherCollider;
 
-    bool triggerActive = false;
+    bool inTriggerZone = false;
 
     static bool canMove = true;
 
@@ -26,6 +24,8 @@ public class RoomMovement : MonoBehaviour
     bool SquestIsDone = false;
 
     public static int dog_room;
+
+    public ChangeTipStatus tip;
 
 
     private void OnEnable()
@@ -42,31 +42,57 @@ public class RoomMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // tip.SetActive(true);
-        if (other.gameObject.CompareTag("Player")) 
+        if (other.gameObject.CompareTag("Player"))
         {
-            triggerActive = true;
+            inTriggerZone = true;
             otherCollider = other;
+            if (forwardDirection)
+            {
+                if (curRoom == 1 && FquestIsDone)
+                    tip.ChangeTipState(true);
+                if (curRoom == 2 && SquestIsDone)
+                    tip.ChangeTipState(true);
+            }
+            else 
+            {
+                tip.ChangeTipState(true);
+            }
+            
         }
     }
-    void FixedUpdate() 
+
+    private void OnTriggerStay(Collider other)
     {
-        if (triggerActive && canMove) 
+        if (other.gameObject.CompareTag("Player"))
+        {
+            inTriggerZone = true;
+            if (curRoom == 1 && FquestIsDone)
+                tip.ChangeTipState(true);
+            if (curRoom == 2 && SquestIsDone)
+                tip.ChangeTipState(true);
+        }
+    }
+
+    void Update()
+    {
+        if (inTriggerZone && canMove)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if (forwardDirection)
                 {
-                    if (curRoom == 1 && FquestIsDone) 
+                    if (curRoom == 1 && FquestIsDone)
                     {
                         dog_room = curRoom;
                         MovePlayer(otherCollider, positionToMove);
+                        tip.ChangeTipState(false);
                         StartCoroutine(Wait());
                     }
                     if (curRoom == 2 && SquestIsDone)
                     {
                         dog_room = curRoom;
                         MovePlayer(otherCollider, positionToMove);
+                        tip.ChangeTipState(false);
                         StartCoroutine(Wait());
                     }
                 }
@@ -107,9 +133,10 @@ public class RoomMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            triggerActive = false;
+            inTriggerZone = false;
+            otherCollider = null;
+            tip.ChangeTipState(false);
         }
-        //tip.SetActive(false);
     }
 
     void setActiveDoor(int num) 

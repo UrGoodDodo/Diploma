@@ -125,8 +125,8 @@ public class LinearDialog : MonoBehaviour
         SwitchStatusOnObjectsDuringDialog();
         foreach (var sentence in dialogSentences) 
         {
-            var time = sentence.Item1.Length * 0.05f + 2f;
-            StartCoroutine(PrintDialogText(sentence, 0.05f));
+            var time = sentence.Item1.Length * 0.01f + 0.2f;
+            StartCoroutine(PrintDialogText(sentence, 0.01f));
             yield return new WaitForSeconds(time);
         }
         changeDialogWindowStatus();

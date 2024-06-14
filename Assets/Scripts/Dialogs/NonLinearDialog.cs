@@ -41,7 +41,8 @@ public class NonLinearDialog : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   if (dialogDependent == 0 || dialogCore.CountPlayedDialogs < dialogDependent) 
+    {
+        if (dialogDependent == 0 || dialogCore.CountPlayedDialogs == dialogDependent) 
         {
             if (condition && DialogCore.dialogsAreActive)
             {

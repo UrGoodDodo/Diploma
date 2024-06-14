@@ -22,6 +22,7 @@ public class NoteRead : MonoBehaviour
 
     bool switchedUi = false;
 
+    public ChangeTipStatus tip;
 
 
     private void OnEnable()
@@ -55,8 +56,10 @@ public class NoteRead : MonoBehaviour
             if (noteChecked && Input.GetKeyDown(KeyCode.E))
             {
                 noteOpen = true;
+                tip.ChangeTipState(false);
                 noteInWorld.gameObject.SetActive(false);
                 switchNoteUisState();
+                noteChecked = false;
             }
         }
 

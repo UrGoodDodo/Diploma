@@ -12,6 +12,8 @@ public class PlayerCam : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    bool camIsFixed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +25,35 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        if (!camIsFixed) 
+        {
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
-        yRotation += mouseX;
-        xRotation -= mouseY;
+            yRotation += mouseX;
+            xRotation -= mouseY;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Не смотрим вверх или вниз больше чем на 90 градусов
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Не смотрим вверх или вниз больше чем на 90 градусов
 
-        // Ротейтим камеру и ориентэйшион
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            // Ротейтим камеру и ориентэйшион
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        } 
+    }
+
+
+    void ChangeCamStatus() 
+    {
+        camIsFixed = !camIsFixed;
+    }
+
+    private void OnEnable()
+    {
+        TriggerPuzzle.changeCamState += ChangeCamStatus;
+    }
+
+    private void OnDisable()
+    {
+        TriggerPuzzle.changeCamState -= ChangeCamStatus;
     }
 }

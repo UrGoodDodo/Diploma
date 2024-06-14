@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneMovement : MonoBehaviour
 {
-    bool triggerActive = false;
+    bool inTriggerZone = false;
 
     static bool canMove = true;
 
@@ -20,6 +20,8 @@ public class SceneMovement : MonoBehaviour
 
     private int curScene;
 
+    public ChangeTipStatus tip;
+
     private void Start()
     {
         curScene = SceneManager.GetActiveScene().buildIndex;
@@ -27,17 +29,17 @@ public class SceneMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")) 
+        if (other.gameObject.CompareTag("Player"))
         {
-            // tip.SetActive(true);
-            triggerActive = true;
+            inTriggerZone = true;
+            tip.ChangeTipState(true);
         }
-            
+
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (triggerActive && canMove)
+        if (inTriggerZone && canMove)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -49,13 +51,21 @@ public class SceneMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            inTriggerZone = true;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")) 
+        if (other.gameObject.CompareTag("Player"))
         {
-            //tip.SetActive(false);
-            triggerActive = false;
-        }   
+            inTriggerZone = false;
+            tip.ChangeTipState(false);
+        }
     }
 
     void SwitchScene(int num)
