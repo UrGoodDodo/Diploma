@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParkMovement : MonoBehaviour
 {
-    //public GameObject tip;
+    public ChangeTipStatus tip;
 
     public bool forwardDirection = true;
 
@@ -22,13 +22,22 @@ public class ParkMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            // tip.SetActive(true);
+            tip.ChangeTipState(true);
             triggerActive = true;
             otherCollider = other;
         }   
     }
 
-    void FixedUpdate()
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            triggerActive = true;
+            otherCollider = other;
+        }
+    }
+
+    void Update()
     {
         if (triggerActive && canMove) 
         {
@@ -66,8 +75,9 @@ public class ParkMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            //tip.SetActive(false);
+            tip.ChangeTipState(false);
             triggerActive = false;
+            otherCollider = null;
         } 
     }
 }

@@ -62,18 +62,14 @@ public class TriggerPuzzle : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
     private void OnDisable()
     {
-        
+        tip.ChangeTipState(false);
+        DeactivatePuzzle();
     }
 
 
-    void DisableSelf() 
+    public void DisableSelf() 
     {
         transform.gameObject.SetActive(false);
     }

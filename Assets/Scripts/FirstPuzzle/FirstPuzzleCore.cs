@@ -5,22 +5,44 @@ using UnityEngine;
 
 public class FirstPuzzleCore : MonoBehaviour
 {
+    public static bool puzzleComplete = false;
 
-    GameObject puzzleGameObject;
+    public List<GameObject> disabledViaQuest = new List<GameObject>();
 
-    bool puzzleComplete = false;
+    int completeTasks = 0;
 
-    
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        puzzleGameObject = transform.GetChild(0).gameObject;
+        DraggingCircles.rotationCheckIsDone += IncreaseCompleteTsks;
+        MovingSliders.positionCheckIsDone += IncreaseCompleteTsks;
+
+        foreach (var gameobj in disabledViaQuest)
+            gameobj.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        DraggingCircles.rotationCheckIsDone -= IncreaseCompleteTsks;
+        MovingSliders.positionCheckIsDone -= IncreaseCompleteTsks;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (completeTasks == 4 && !puzzleComplete) 
+        {
+            puzzleComplete = true;
+            foreach (var gameobj in disabledViaQuest)
+                gameobj.SetActive(true);
+            var tp = transform.GetComponent<TriggerPuzzle>();
+            tp.DisableSelf();
+        }
     }
+
+    void IncreaseCompleteTsks() 
+    {
+        completeTasks++;
+    }
+
+
 }

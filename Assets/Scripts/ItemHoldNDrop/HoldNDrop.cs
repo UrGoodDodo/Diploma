@@ -30,6 +30,7 @@ public class HoldNDrop : MonoBehaviour
     public delegate void Note(bool flag);
     public static event Note noteChecked;
     public ChangeTipStatus tip;
+    bool removeTip = false;
 
     private void Start()
     {
@@ -66,11 +67,17 @@ public class HoldNDrop : MonoBehaviour
                 {
                     noteChecked?.Invoke(true);
                     tip.ChangeTipState(true);
+                    removeTip = true;
                 } 
                 else
                 {
                     noteChecked?.Invoke(false);
-                    tip.ChangeTipState(false);
+                    if (removeTip) 
+                    {
+                        tip.ChangeTipState(false);
+                        removeTip = false;
+                    }
+                    
                 }
 
                 if (hitGameObject != lastHoldItem)
