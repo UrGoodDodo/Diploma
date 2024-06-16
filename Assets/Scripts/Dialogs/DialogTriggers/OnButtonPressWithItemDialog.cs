@@ -10,6 +10,8 @@ public class OnButtonPressWithItemDialog : MonoBehaviour
 
     public GameObject itemToCheck;
 
+    public ChangeTipStatus tip;
+
     private void Start()
     {
         cd = GetComponent<LinearDialog>();
@@ -26,6 +28,7 @@ public class OnButtonPressWithItemDialog : MonoBehaviour
         if (other.CompareTag("Player")) 
         {
             playerInArea = true;
+            tip.ChangeTipState(false);
         }
     }
 
@@ -34,6 +37,7 @@ public class OnButtonPressWithItemDialog : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInArea = false;
+            tip.ChangeTipState(false);
         }
     }
 
@@ -53,8 +57,8 @@ public class OnButtonPressWithItemDialog : MonoBehaviour
                         
                         if (!DialogCore.dialogsAreActive && playerInArea && rb.gameObject == itemToCheck)
                         {
-                            Debug.Log("Lf");
                             cd.clauseFullFilled();
+                            tip.ChangeTipState(false);
                             activateDialog = true;
                         }
                     }

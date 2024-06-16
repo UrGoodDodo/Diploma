@@ -23,9 +23,12 @@ public class KeyQuest : MonoBehaviour
 
     public static Action KeyIsFound;
 
+    public ChangeTipStatus tip;
+
     void Update()
     {
         checkPlayersItem();
+
         if (!questIsDone)
         {
             if (currentItemInHands != null) 
@@ -38,6 +41,7 @@ public class KeyQuest : MonoBehaviour
                     questIsDone = true;
                     questCompleteEvent?.Invoke(1);
                     currentItemInHands.gameObject.SetActive(false);
+                    tip.ChangeTipState(false);
                 }
             }
         }
@@ -48,6 +52,11 @@ public class KeyQuest : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) 
         {
             playerInArea = true;
+
+            if (currentItemInHands.gameObject != null && currentItemInHands.gameObject == key) 
+            {
+                tip.ChangeTipState(true);
+            }
         }
         
     }
@@ -57,6 +66,7 @@ public class KeyQuest : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInArea = false;
+            tip.ChangeTipState(false);
         }
     }
 

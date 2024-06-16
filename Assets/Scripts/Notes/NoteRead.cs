@@ -27,12 +27,12 @@ public class NoteRead : MonoBehaviour
 
     private void OnEnable()
     {
-        HoldNDrop.noteChecked += checkNote;
+        TagOrLayerChecker.noteChecked += checkNote;
     }
 
     private void OnDisable()
     {
-        HoldNDrop.noteChecked -= checkNote;
+        TagOrLayerChecker.noteChecked -= checkNote;
     }
 
     // Start is called before the first frame update
@@ -46,7 +46,7 @@ public class NoteRead : MonoBehaviour
     {
         if (!noteRead)
         {
-            if (noteOpen && Input.GetKeyDown(KeyCode.Escape))
+            if (noteOpen && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E)))
             {
                 switchNoteUisState();
                 noteOpen = false;

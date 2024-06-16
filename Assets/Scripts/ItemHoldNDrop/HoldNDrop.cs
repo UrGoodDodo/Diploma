@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class HoldNDrop : MonoBehaviour
 {
-    [SerializeField]
-    private Material outlineMaterial;
+
+    float offset = 1f;
 
     private bool isDragging = false;
     private Rigidbody currentlyHoldItem;
@@ -16,28 +16,11 @@ public class HoldNDrop : MonoBehaviour
         get { return currentlyHoldItem; }
     }
 
-    private MeshRenderer hitItemRenderer;
-    private Vector3 offset;
-    private Material[] originalMaterials;
-
     [Header("Smooth movement")]
     public float smoothSpeed = 5.0f;
 
-    private GameObject lastHoldItem;
-
-    private bool lastIsColored = false;
-
-    public delegate void Note(bool flag);
-    public static event Note noteChecked;
-    public ChangeTipStatus tip;
-    bool removeTip = false;
-
-    private void Start()
-    {
-        lastHoldItem = new GameObject("Cool GameObject made from Code");
-        lastHoldItem.AddComponent<MeshRenderer>();
-        originalMaterials = new Material[1];
-    }
+    public delegate void CheckCurRigidBody(GameObject rigidbody);
+    public static CheckCurRigidBody CheckedCurRigidBody;
 
     private void OnEnable()
     {
@@ -63,58 +46,17 @@ public class HoldNDrop : MonoBehaviour
             {
                 GameObject hitGameObject = hit.collider.gameObject;
 
-                if (hitGameObject.gameObject.CompareTag("Note")) 
-                {
-                    noteChecked?.Invoke(true);
-                    tip.ChangeTipState(true);
-                    removeTip = true;
-                } 
-                else
-                {
-                    noteChecked?.Invoke(false);
-                    if (removeTip) 
-                    {
-                        tip.ChangeTipState(false);
-                        removeTip = false;
-                    }
-                    
-                }
-
-                if (hitGameObject != lastHoldItem)
-                {
-                    MeshRenderer lastHoldItemRenderer = lastHoldItem.GetComponent<MeshRenderer>();
-                    lastHoldItemRenderer.materials = originalMaterials;
-                    lastIsColored = false;
-                }
-
-                if ((hitGameObject.gameObject.layer == LayerMask.NameToLayer("Items") || hitGameObject.gameObject.layer == LayerMask.NameToLayer("QuestTips") || hitGameObject.gameObject.CompareTag("Note")) && !lastIsColored)
-                {
-
-                    hitItemRenderer = hitGameObject.gameObject.GetComponent<MeshRenderer>();
-                    originalMaterials = hitItemRenderer.materials;
-                    Material[] tmats = new Material[originalMaterials.Length + 1];
-
-                    for (int i = 0; i < originalMaterials.Length; i++)
-                    {
-                        tmats[i] = originalMaterials[i];
-                    }
-                    tmats[tmats.Length - 1] = outlineMaterial;
-
-                    hitItemRenderer.materials = tmats;
-
-                    lastHoldItem = hitGameObject;
-                    lastIsColored = true;
-                }
+                CheckedCurRigidBody?.Invoke(hitGameObject);
 
                 if (Input.GetMouseButtonDown(0))
                 {
                     Rigidbody hitRigidBody = hit.collider.GetComponent<Rigidbody>();
-                    if (hitRigidBody != null && hitRigidBody.gameObject.layer == LayerMask.NameToLayer("Items"))
+                    if (hitRigidBody != null && hitRigidBody.gameObject.layer == LayerMask.NameToLayer("InteractableItems"))
                     {
                         isDragging = true;
                         currentlyHoldItem = hitRigidBody;
 
-                        offset = currentlyHoldItem.transform.position - hit.point;
+                        //offset = currentlyHoldItem.transform.position.z;
 
                         currentlyHoldItem.isKinematic = true;
 
@@ -125,8 +67,10 @@ public class HoldNDrop : MonoBehaviour
 
         if (isDragging && currentlyHoldItem != null) 
         {
-            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, Camera.main.transform.position.y));
+            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, offset));
+
             MoveWithCollisions(targetPosition);
+
             if (Input.GetMouseButtonUp(0)) 
             {
                 isDragging = false;
