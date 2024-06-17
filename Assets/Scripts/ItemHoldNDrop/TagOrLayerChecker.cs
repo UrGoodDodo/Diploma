@@ -36,55 +36,62 @@ public class TagOrLayerChecker : MonoBehaviour
 
     void CheckCurRigidBody(GameObject gameObject) 
     {
-        if (gameObject.layer == LayerMask.NameToLayer("InteractableItems"))
+        if (gameObject != null) 
         {
-            OutLinedIt?.Invoke(gameObject);
-
-            if (gameObject.CompareTag("ItemsWithTips")) 
+            if (gameObject.layer == LayerMask.NameToLayer("InteractableItems"))
             {
-                ActivateTip?.Invoke();
-                disableOnce = true;
+                OutLinedIt?.Invoke(gameObject);
 
-                if (gameObject.transform.childCount > 0) 
+                if (gameObject.CompareTag("ItemsWithTips"))
                 {
-                    var tagCheck = gameObject.transform.GetChild(0);
-                    if (tagCheck.CompareTag("Note"))
-                        noteChecked?.Invoke(true);
-                    else
-                        noteChecked?.Invoke(false);
+                    ActivateTip?.Invoke();
+                    disableOnce = true;
+
+                    if (gameObject.transform.childCount > 0)
+                    {
+                        var tagCheck = gameObject.transform.GetChild(0);
+                        if (tagCheck.CompareTag("Note"))
+                            noteChecked?.Invoke(true);
+                        else
+                            noteChecked?.Invoke(false);
+                    }
+
+                    //if (tagCheck.CompareTag("PuzzleItem"))
+                    //{
+                    //    var t = gameObject.GetComponent<PuzzleItems>().plateNumber;
+                    //    puzzledItemd?.Invoke(t, true);
+                    //}
+                    //else 
+                    //    puzzledItemd?.Invoke(0, false);
+
                 }
 
-                //if (tagCheck.CompareTag("PuzzleItem"))
-                //{
-                //    var t = gameObject.GetComponent<PuzzleItems>().plateNumber;
-                //    puzzledItemd?.Invoke(t, true);
-                //}
-                //else 
-                //    puzzledItemd?.Invoke(0, false);
-
+                oldGameObject = gameObject;
             }
+            else if (oldGameObject != null)
+            {
+                DisableOldOutline?.Invoke();
 
-            oldGameObject = gameObject;
+                if (oldGameObject.CompareTag("ItemsWithTips") && disableOnce)
+                {
+                    DisableTip?.Invoke();
+                    disableOnce = false;
+                }
+
+                if (oldGameObject.transform.childCount > 0)
+                {
+                    if (oldGameObject.transform.GetChild(0).CompareTag("Note"))
+                        noteChecked?.Invoke(false);
+
+                    //if (oldGameObject.transform.GetChild(0).CompareTag("PuzzleItem"))
+                    //    puzzledItemd?.Invoke(0, false);
+                }
+            }
         }
-        else if (oldGameObject != null) 
-        {
+        else
             DisableOldOutline?.Invoke();
 
-            if (oldGameObject.CompareTag("ItemsWithTips") && disableOnce) 
-            {
-                DisableTip?.Invoke();
-                disableOnce = false;
-            }
 
-            if (oldGameObject.transform.childCount > 0)
-            {
-                if (oldGameObject.transform.GetChild(0).CompareTag("Note"))
-                    noteChecked?.Invoke(false);
-
-                //if (oldGameObject.transform.GetChild(0).CompareTag("PuzzleItem"))
-                //    puzzledItemd?.Invoke(0, false);
-            }
-        }   
     }
 
 }

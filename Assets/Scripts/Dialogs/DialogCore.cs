@@ -31,6 +31,8 @@ public class DialogCore : MonoBehaviour
         get { return gotDialogs; }
     }
 
+    public delegate void DialogsPlay(int number);
+    public static event DialogsPlay DialogsArePlayed;
 
     private void OnEnable()
     {
@@ -38,6 +40,8 @@ public class DialogCore : MonoBehaviour
         LinearDialog.startedForwardDialog += SwitchDialogType;
         NonLinearDialog.switchCoreDialogStatus += changeDialogStatus;
         NonLinearDialog.startedMiscDialog += SwitchDialogType;
+
+        ReturningToOldScenes.OnLoadHideDialogs += DisableAllDialogTriggers;
     }
 
     private void OnDisable()
@@ -46,6 +50,9 @@ public class DialogCore : MonoBehaviour
         LinearDialog.startedForwardDialog -= SwitchDialogType;
         NonLinearDialog.switchCoreDialogStatus -= changeDialogStatus;
         NonLinearDialog.startedMiscDialog -= SwitchDialogType;
+
+        ReturningToOldScenes.OnLoadHideDialogs -= DisableAllDialogTriggers;
+
     }
 
     void Start()
@@ -72,6 +79,10 @@ public class DialogCore : MonoBehaviour
             if (countPlayedDialogs <= dialogTiggers.Count - 1) 
             {
                 dialogTiggers[countPlayedDialogs].SetActive(true);
+
+                if (countPlayedDialogs == dialogTiggers.Count - 1) 
+                    DialogsArePlayed?.Invoke(sceneNum);
+                    
             }
         }
     }
@@ -91,5 +102,13 @@ public class DialogCore : MonoBehaviour
     void SwitchDialogType(bool typeOfDialog) 
     {
         currentDialogType = typeOfDialog;
+    }
+
+    void DisableAllDialogTriggers() 
+    {
+        foreach (var item in dialogTiggers)
+        {
+            item.SetActive(false);
+        }
     }
 }

@@ -1565,6 +1565,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4973576870786677125, guid: 96437c03558c739469307b5ee49a1cf0, type: 3}
   m_PrefabInstance: {fileID: 8415477901899679565}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &342532890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1731458044353104506, guid: 383a3663f5053144784eb7d133746bb5, type: 3}
+  m_PrefabInstance: {fileID: 602748197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &369198730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5241,6 +5246,53 @@ Transform:
   - {fileID: 285318494}
   m_Father: {fileID: 1568043448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1262157822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262157823}
+  - component: {fileID: 1262157825}
+  m_Layer: 0
+  m_Name: HelpInReturning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1262157823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262157822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.1418147, y: 9.361331, z: 18.557476}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262157825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262157822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed81f059b13e26458c1fbbad8bf87dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzle: {fileID: 1814390450}
+  door: {fileID: 167890287153212836}
+  note: {fileID: 342532890}
 --- !u!4 &1297202528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7018186587469622040, guid: 3ad2726af2c83f041befa2ea639d2eac, type: 3}
@@ -11894,3 +11946,4 @@ SceneRoots:
   - {fileID: 1786322717}
   - {fileID: 235159212}
   - {fileID: 1745163459}
+  - {fileID: 1262157823}

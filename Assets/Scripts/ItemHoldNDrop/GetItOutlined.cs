@@ -35,6 +35,7 @@ public class GetItOutlined : MonoBehaviour
         {
             DisableOutlineOnOld();
             OutLineCurrent(gameobject);
+            oldGameObj = gameobject;
         }
     }
 
@@ -53,7 +54,10 @@ public class GetItOutlined : MonoBehaviour
 
     void DisableOutlineOnOld() 
     {
-        MeshRenderer lastHoldItemRenderer = oldGameObj.GetComponent<MeshRenderer>();
-        lastHoldItemRenderer.materials = originalMaterials;
+        if (oldGameObj != null) 
+        {
+            MeshRenderer lastHoldItemRenderer = oldGameObj.GetComponent<MeshRenderer>();
+            lastHoldItemRenderer.materials = originalMaterials;
+        }
     }
 }

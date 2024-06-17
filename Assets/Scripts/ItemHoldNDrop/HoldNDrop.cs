@@ -36,7 +36,10 @@ public class HoldNDrop : MonoBehaviour
     void Update()
     {
         ItemReach itemReach = GetComponent<ItemReach>();
-
+        if (itemReach == null) 
+        {
+            CheckedCurRigidBody?.Invoke(null);
+        }
         if (itemReach != null && itemReach.IsRaycastHit()) 
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

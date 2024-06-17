@@ -11,6 +11,8 @@ public class FirstPuzzleCore : MonoBehaviour
 
     int completeTasks = 0;
 
+    public static Action PuzzleIsComplete;
+
     private void OnEnable()
     {
         DraggingCircles.rotationCheckIsDone += IncreaseCompleteTsks;
@@ -36,6 +38,7 @@ public class FirstPuzzleCore : MonoBehaviour
                 gameobj.SetActive(true);
             var tp = transform.GetComponent<TriggerPuzzle>();
             tp.DisableSelf();
+            PuzzleIsComplete?.Invoke();
         }
     }
 

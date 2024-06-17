@@ -23,6 +23,8 @@ public class KeyQuest : MonoBehaviour
 
     public static Action KeyIsFound;
 
+    public static Action KeyQuestSaveComplete;
+
     public ChangeTipStatus tip;
 
     void Update()
@@ -40,6 +42,7 @@ public class KeyQuest : MonoBehaviour
                 {
                     questIsDone = true;
                     questCompleteEvent?.Invoke(1);
+                    KeyQuestSaveComplete?.Invoke();
                     currentItemInHands.gameObject.SetActive(false);
                     tip.ChangeTipState(false);
                 }
@@ -53,9 +56,12 @@ public class KeyQuest : MonoBehaviour
         {
             playerInArea = true;
 
-            if (currentItemInHands.gameObject != null && currentItemInHands.gameObject == key) 
+            if (currentItemInHands != null) 
             {
-                tip.ChangeTipState(true);
+                if (currentItemInHands.gameObject == key) 
+                {
+                    tip.ChangeTipState(true);
+                }
             }
         }
         

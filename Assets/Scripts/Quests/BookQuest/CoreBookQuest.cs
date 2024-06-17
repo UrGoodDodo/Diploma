@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,6 +12,8 @@ public class CoreBookQuest : MonoBehaviour
 
     public delegate void questComplete(int num);
     public static event questComplete questCompleteEvent;
+
+    public static Action BookQuestSaveComplete;
 
     private void OnEnable()
     {
@@ -27,6 +30,7 @@ public class CoreBookQuest : MonoBehaviour
         if (RightBooksOnPlaceCount == 4)
         {
             questIsSolved = true;
+            BookQuestSaveComplete?.Invoke();
             questCompleteEvent?.Invoke(2);
         }
     }

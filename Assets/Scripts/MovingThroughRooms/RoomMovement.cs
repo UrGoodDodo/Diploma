@@ -32,12 +32,16 @@ public class RoomMovement : MonoBehaviour
     {
         KeyQuest.questCompleteEvent += setActiveDoor;
         CoreBookQuest.questCompleteEvent += setActiveDoor;
+
+        SecondSceneReturning.QuestPlayed += setActiveDoor;
     }
 
     private void OnDisable()
     {
         KeyQuest.questCompleteEvent -= setActiveDoor;
         CoreBookQuest.questCompleteEvent -= setActiveDoor;
+
+        SecondSceneReturning.QuestPlayed -= setActiveDoor;
     }
 
     private void OnTriggerEnter(Collider other)

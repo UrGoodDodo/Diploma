@@ -28,7 +28,10 @@ public class OnButtonPressWithItemDialog : MonoBehaviour
         if (other.CompareTag("Player")) 
         {
             playerInArea = true;
-            tip.ChangeTipState(false);
+            if (rb != null && rb.gameObject == itemToCheck)
+            {
+                tip.ChangeTipState(true);
+            }
         }
     }
 

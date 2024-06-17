@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class FourthPuzzleCore : MonoBehaviour
     public List<GameObject> disabledViaQuest = new List<GameObject>();
 
     public GameObject Lock;
+
+    public static Action PuzzleIsComplete;
 
     private void OnEnable()
     {
@@ -49,6 +52,7 @@ public class FourthPuzzleCore : MonoBehaviour
 
             var tp = transform.GetComponent<TriggerPuzzle>();
             tp.DisableSelf();
+            PuzzleIsComplete?.Invoke();
         }
         else
             curPuzzleAnswer.Clear();

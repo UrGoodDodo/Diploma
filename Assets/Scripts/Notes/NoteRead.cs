@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,6 +25,8 @@ public class NoteRead : MonoBehaviour
 
     public ChangeTipStatus tip;
 
+    public static Action NoteIsRead;
+
 
     private void OnEnable()
     {
@@ -48,6 +51,7 @@ public class NoteRead : MonoBehaviour
         {
             if (noteOpen && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E)))
             {
+                NoteIsRead?.Invoke();
                 switchNoteUisState();
                 noteOpen = false;
                 noteRead = true;

@@ -13,9 +13,24 @@ public class ReturningToOldScenes : MonoBehaviour
 
     public Transform endDestination;
 
+    public static Action OnLoadHideDialogs;
+
     bool direction;
 
     bool isDone = false;
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("SavedScenes"))
+        {
+            string temp = PlayerPrefs.GetString("SavedScenes");
+
+            if (temp.Contains((SceneManager.GetActiveScene().buildIndex).ToString()))
+            {
+                OnLoadHideDialogs?.Invoke();
+            }
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -34,11 +49,14 @@ public class ReturningToOldScenes : MonoBehaviour
             if (PlayerPrefs.HasKey("SavedScenes"))
             {
                 string temp = PlayerPrefs.GetString("SavedScenes");
-                if (temp.Contains((SceneManager.GetActiveScene().buildIndex).ToString()) && !direction)
-                {
-                    StartCoroutine(Wait());
-                    player.transform.position = new Vector3(endDestination.position.x, endDestination.position.y, endDestination.position.z);
 
+                if (temp.Contains((SceneManager.GetActiveScene().buildIndex).ToString())) 
+                {
+                    OnLoadHideDialogs?.Invoke();
+                    if (!direction) 
+                    {
+                        player.transform.position = new Vector3(endDestination.position.x, endDestination.position.y, endDestination.position.z);
+                    }
                 }
             }
             else
@@ -50,8 +68,4 @@ public class ReturningToOldScenes : MonoBehaviour
         
     }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(5f);
-    }
 }
