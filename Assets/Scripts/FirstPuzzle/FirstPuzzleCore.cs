@@ -39,6 +39,7 @@ public class FirstPuzzleCore : MonoBehaviour
             var tp = transform.GetComponent<TriggerPuzzle>();
             tp.DisableSelf();
             PuzzleIsComplete?.Invoke();
+            OnQuestIsDoneDialog.f_flag_end = true;
         }
     }
 

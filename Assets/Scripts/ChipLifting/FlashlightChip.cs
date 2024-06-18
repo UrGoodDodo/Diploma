@@ -25,9 +25,12 @@ public class FlashlightChip : MonoBehaviour
                 currentItemInHands.gameObject.SetActive(false);
 
             }
-            else if (in_zone && (currentItemInHands.gameObject.tag == "Voice_chip" || currentItemInHands.gameObject.tag == "Memory_chip") && Input.GetKeyDown(KeyCode.E))
+            else if (in_zone && currentItemInHands.gameObject.tag == "Voice_chip" && Input.GetKeyDown(KeyCode.E))
             {
                 currentItemInHands.gameObject.SetActive(false);
+            }else if (in_zone && currentItemInHands.gameObject.tag == "Memory_chip" && Input.GetKeyDown(KeyCode.E))
+            {
+                AIBehavuor.is_start = true;
             }
         }
     }

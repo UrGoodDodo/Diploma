@@ -11,6 +11,8 @@ public class OnQuestIsDoneDialog : MonoBehaviour
 
     bool in_zone;
 
+    public static bool f_flag_end = false;
+
     public int dialog_num;
 
     public GameObject active_trigger;
@@ -33,7 +35,7 @@ public class OnQuestIsDoneDialog : MonoBehaviour
     {
         if (!activateDialog && cd.GotDialog)
         {
-            if(in_zone && Input.GetKeyDown(KeyCode.E))
+            if(dialog_num == 3 && f_flag_end)
             {
                 LightBehavour.helping = false;
                 AIBehavuor.is_helping = false;
@@ -54,6 +56,7 @@ public class OnQuestIsDoneDialog : MonoBehaviour
                 AIBehavuor.is_start = true;
                 cd.clauseFullFilled();
                 activateDialog = true;
+                AIBehavuor.is_start = false;
                 AIBehavuor.IsHelping?.Invoke();
             }
         }

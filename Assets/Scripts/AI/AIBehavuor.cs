@@ -22,7 +22,7 @@ public class AIBehavuor : MonoBehaviour
     //Player`s position
     Vector3 dest;
     //Angle of AI view
-    [Range(0f, 360f)] float view_angel = 220f;
+    [Range(0f, 360f)] float view_angel = 350f;
     //View distance AI
     float view_dist = 15f;
     //Detection distance AI
@@ -45,9 +45,11 @@ public class AIBehavuor : MonoBehaviour
 
     static public bool is_helping;
 
+    static public bool is_the_end = false;
+
     public static Action IsHelping;
 
-    public static bool is_start = true;
+    public static bool is_start;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +82,11 @@ public class AIBehavuor : MonoBehaviour
     {
         
         float real_dist_to_player = Vector3.Distance(player.transform.position, ai_position.transform.position);
+        //if (is_the_end)
+        //{
+        //    The_End();
+        //}
+        //else
         if (is_searching_key)
         {
             SearchingKeyAI();
@@ -182,6 +189,12 @@ public class AIBehavuor : MonoBehaviour
         }
         //если объект не нал, то сюда передаем значение после касания триггера, что прошло нное количество времени и собаке надо подойти к точке и посветить на объект
  
+    }
+
+    private void The_End()
+    {
+        ai_nav.transform.LookAt(player.transform);
+        IsHelping?.Invoke();
     }
 
     IEnumerator StopTime()

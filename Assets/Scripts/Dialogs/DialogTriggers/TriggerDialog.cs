@@ -29,6 +29,10 @@ public class TriggerDialog : MonoBehaviour
                 {
                     AIBehavuor.is_start = true;
                 } 
+                //if (SceneManager.GetActiveScene().buildIndex == 1 && RoomMovement.dog_room == 2)
+                //{
+                //    AIBehavuor.is_start = true;
+                //}
             }
         }
         else if (ld == null && nld != null) 

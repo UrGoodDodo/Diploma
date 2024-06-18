@@ -42,7 +42,8 @@ public class LightBehavour : MonoBehaviour
         {
             if (room_dark)
             {
-                if(!flashlight_on)
+                Debug.Log("dark");
+                if (!flashlight_on)
                     TurnOn();
             }
             else if(flashlight_on) 
