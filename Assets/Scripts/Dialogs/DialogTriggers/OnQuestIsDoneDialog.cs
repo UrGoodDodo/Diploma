@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class OnQuestIsDoneDialog : MonoBehaviour
     public GameObject active_trigger;
 
     public static bool the_end_dialoge = false;
+
+    public static Action IsTheEndAction;
 
     private void Start()
     {
@@ -43,7 +46,6 @@ public class OnQuestIsDoneDialog : MonoBehaviour
             }
             if (dialog_num == 8 && in_zone)
             {
-                //тут надо проверить на то, чтобы диалог не включался, если игрок не зайдет в триггер
                 LightBehavour.helping = false;
                 AIBehavuor.is_helping = false;
                 cd.clauseFullFilled();
@@ -62,12 +64,13 @@ public class OnQuestIsDoneDialog : MonoBehaviour
             {
                 cd.clauseFullFilled();
                 activateDialog = true;
-                active_trigger.SetActive(true);
+                dialog_num = 12;
             }
             if (dialog_num == 12)
             {
                 cd.clauseFullFilled();
                 activateDialog = true;
+                IsTheEndAction?.Invoke();
             }
         }
     }

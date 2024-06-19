@@ -46,6 +46,7 @@ public class LightBehavour : MonoBehaviour
                     TurnOn();
                 if (AIBehavuor.is_the_end)
                 {
+                    TurnOn();
                     flashlight.transform.LookAt(player_camera.position);
                 }
             }

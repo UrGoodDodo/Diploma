@@ -192,13 +192,6 @@ public class AIBehavuor : MonoBehaviour
                     if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 1)
                     {
                         ai_nav.transform.LookAt(o);
-                    }else if (SceneManager.GetActiveScene().buildIndex == 1 && RoomMovement.dog_room == 3)
-                    {
-                        if (GameObject.FindGameObjectWithTag("ObjectFH1"))
-                        {
-                            var o1 = GameObject.FindGameObjectWithTag("ObjectFH").transform;
-                            ai_nav.transform.LookAt(o1);
-                        }
                     }
                 }
             }

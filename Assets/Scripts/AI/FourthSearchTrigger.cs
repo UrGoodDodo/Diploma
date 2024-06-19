@@ -13,22 +13,13 @@ public class FourthSearchTrigger : MonoBehaviour
             if (trigger_num == 1)
             {
                 AIBehavuor.search_number = 1;
-                //AIBehavuor.flag_restart = true;
-                //AIBehavuor.is_searching_key = true;
-                //AIBehavuor.points.Clear();
             }else if (trigger_num == 2)
             {
                 AIBehavuor.search_number = 2;
-                //AIBehavuor.flag_restart = true;
-                //AIBehavuor.is_searching_key = true;
-                //AIBehavuor.points.Clear();
             }
             else if(trigger_num == 3)
             {
                 AIBehavuor.search_number = 3;
-                //AIBehavuor.flag_restart = true;
-                //AIBehavuor.is_searching_key = true;
-                //AIBehavuor.points.Clear();
             }
             AIBehavuor.flag_restart = true;
             AIBehavuor.is_searching_key = true;
