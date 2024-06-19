@@ -33,12 +33,16 @@ public class FourthPuzzleCore : MonoBehaviour
 
     void CheckCurAnswer() 
     {
-        bool flag = false;
+        bool flag = true;
         if (curPuzzleAnswer.Count == correctPuzzleAnswer.Count) 
         {
             for (int i = 0; i < correctPuzzleAnswer.Count; i++) 
             {
-                flag = curPuzzleAnswer[i] == correctPuzzleAnswer[i];
+                if(curPuzzleAnswer[i] != correctPuzzleAnswer[i])
+                {
+                    flag = false;
+                    break;
+                }
             }
         }
 

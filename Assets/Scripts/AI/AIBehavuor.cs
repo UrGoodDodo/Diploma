@@ -85,7 +85,8 @@ public class AIBehavuor : MonoBehaviour
                         }
                         Debug.Log(search_number);
                         ai_nav = anim.GetComponent<NavMeshAgent>();
-                        ai_nav.SetDestination(points[0].position);
+                        if (points[0] != null)
+                            ai_nav.SetDestination(points[0].position);
                     }
                 }
                 flag_restart = false;
@@ -109,7 +110,6 @@ public class AIBehavuor : MonoBehaviour
         {
             if (real_dist_to_player <= detection_dist || IsInView())
             {
-                //RotationAI();
                 if (real_dist_to_player <= 1.8f)
                     Wait();
                 else
@@ -128,7 +128,6 @@ public class AIBehavuor : MonoBehaviour
         {
             if (ai_nav.isStopped)
                 ai_nav.Resume();
-            // RotationAI();
             anim.SetBool("IsWalking", true);
             anim.SetBool("IsIdle", false);
             anim.Play("walking");
@@ -158,16 +157,6 @@ public class AIBehavuor : MonoBehaviour
                 return true;
         }
         return false;
-    }
-
-    //Rotation AI
-    private void RotationAI()
-    {
-        Vector3 look = player.position - ai_position.position;
-        look.y = 0;
-        if (look == Vector3.zero)
-            return;
-        ai_position.rotation = Quaternion.RotateTowards(player.rotation, Quaternion.LookRotation(look, Vector3.up), 30 * Time.deltaTime);
     }
 
     private void SearchingKeyAI()
