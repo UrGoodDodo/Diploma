@@ -23811,6 +23811,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CBook_5 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7685296373291020391, guid: e583f39a6f2954a49a3acd775c37db1f, type: 3}
+      propertyPath: m_TagString
+      value: ObjectFH
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

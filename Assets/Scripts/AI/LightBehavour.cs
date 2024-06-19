@@ -42,9 +42,12 @@ public class LightBehavour : MonoBehaviour
         {
             if (room_dark)
             {
-                Debug.Log("dark");
                 if (!flashlight_on)
                     TurnOn();
+                if (AIBehavuor.is_the_end)
+                {
+                    flashlight.transform.LookAt(player_camera.position);
+                }
             }
             else if(flashlight_on) 
                 TurnOff();

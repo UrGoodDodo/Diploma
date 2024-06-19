@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.WebSockets;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
 public class AIBehavuor : MonoBehaviour
@@ -27,21 +29,18 @@ public class AIBehavuor : MonoBehaviour
     float view_dist = 15f;
     //Detection distance AI
     float detection_dist = 2f;
-    //
-    //private float rotation_speed_ai;
-    //
-    //
+    
     Animator anim;
-    //
+   
     float timer;
-    //
+   
     public static bool is_searching_key;
 
     public static bool key_was_found;
 
     static public List<Transform> points = new List<Transform>();
 
-    static public int search_number = 0;
+    static public int search_number;
 
     static public bool is_helping;
 
@@ -50,6 +49,8 @@ public class AIBehavuor : MonoBehaviour
     public static Action IsHelping;
 
     public static bool is_start;
+
+    public static bool flag_restart;
 
     // Start is called before the first frame update
     void Start()
@@ -61,40 +62,48 @@ public class AIBehavuor : MonoBehaviour
         else
             ai_nav.speed = ai_speed;
         anim = GetComponent<Animator>();
-        if (GameObject.FindGameObjectWithTag($"Points{search_number}"))
-        {
-            Transform pointObject = GameObject.FindGameObjectWithTag($"Points{search_number}").transform;
-            if (pointObject != null)
-            {
-                foreach (Transform p in pointObject)
-                {
-                    points.Add(p);
-                }
-                ai_nav = anim.GetComponent<NavMeshAgent>();
-                ai_nav.SetDestination(points[0].position);
-            }
-        }
+        flag_restart = true;
+        search_number = 0;
         
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        if (GameObject.FindGameObjectWithTag($"Points{search_number}"))
+        {
+            if (GameObject.FindGameObjectWithTag($"Points{search_number}") && flag_restart)
+            {
+                if(GameObject.FindGameObjectWithTag($"Points{search_number}").transform != null)
+                {
+                    GameObject[] pointObject = GameObject.FindGameObjectsWithTag($"Points{search_number}");
+                    if (pointObject != null)
+                    {
+                        foreach (GameObject p in pointObject)
+                        {
+                            points.Add(p.transform);
+                        }
+                        Debug.Log(search_number);
+                        ai_nav = anim.GetComponent<NavMeshAgent>();
+                        ai_nav.SetDestination(points[0].position);
+                    }
+                }
+                flag_restart = false;
+            }
+        }
         float real_dist_to_player = Vector3.Distance(player.transform.position, ai_position.transform.position);
-        //if (is_the_end)
-        //{
-        //    The_End();
-        //}
-        //else
+
         if (is_searching_key)
         {
             SearchingKeyAI();
         }
         else if (is_helping)
         {
-            //Debug.Log("Help");
             HelpAI();
+        }
+        else if (is_the_end) 
+        {
+            TheEnd();
         }
         else
         {
@@ -176,6 +185,22 @@ public class AIBehavuor : MonoBehaviour
             {
                 Wait();
                 IsHelping?.Invoke();
+                if (GameObject.FindGameObjectWithTag("ObjectFH"))
+                {
+                    var o = GameObject.FindGameObjectWithTag("ObjectFH").transform;
+                    
+                    if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 1)
+                    {
+                        ai_nav.transform.LookAt(o);
+                    }else if (SceneManager.GetActiveScene().buildIndex == 1 && RoomMovement.dog_room == 3)
+                    {
+                        if (GameObject.FindGameObjectWithTag("ObjectFH1"))
+                        {
+                            var o1 = GameObject.FindGameObjectWithTag("ObjectFH").transform;
+                            ai_nav.transform.LookAt(o1);
+                        }
+                    }
+                }
             }
             else
             {
@@ -191,10 +216,12 @@ public class AIBehavuor : MonoBehaviour
  
     }
 
-    private void The_End()
+    private void TheEnd()
     {
+        is_start = true;
+        dest = new Vector3(player.position.x + 0.5f, player.position.y, player.position.z + 0.5f);
+        ai_nav.destination = dest;
         ai_nav.transform.LookAt(player.transform);
-        IsHelping?.Invoke();
     }
 
     IEnumerator StopTime()

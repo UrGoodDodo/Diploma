@@ -17,15 +17,13 @@ public class OnQuestIsDoneDialog : MonoBehaviour
 
     public GameObject active_trigger;
 
+    public static bool the_end_dialoge = false;
+
     private void Start()
     {
-        if(dialog_num == 3 || dialog_num == 8)
+        if(dialog_num == 3 || dialog_num == 8 || dialog_num == 9)
         {
             AIBehavuor.is_helping = true;
-        }
-        if (dialog_num == 10)
-        {
-            AIBehavuor.is_start = false;
         }
         cd = GetComponent<LinearDialog>();
     }
@@ -51,13 +49,25 @@ public class OnQuestIsDoneDialog : MonoBehaviour
                 cd.clauseFullFilled();
                 activateDialog = true;
             }
+            if (dialog_num == 9 && active_trigger)
+            {
+                AIBehavuor.is_helping = false;
+            }
             if (dialog_num == 10)
             {
-                AIBehavuor.is_start = true;
                 cd.clauseFullFilled();
                 activateDialog = true;
-                AIBehavuor.is_start = false;
-                AIBehavuor.IsHelping?.Invoke();
+            }
+            if (dialog_num == 11 && the_end_dialoge)
+            {
+                cd.clauseFullFilled();
+                activateDialog = true;
+                active_trigger.SetActive(true);
+            }
+            if (dialog_num == 12)
+            {
+                cd.clauseFullFilled();
+                activateDialog = true;
             }
         }
     }

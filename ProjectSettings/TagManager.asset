@@ -21,6 +21,11 @@ TagManager:
   - PointFH
   - ItemsWithTips
   - PuzzleItem
+  - ObjectFH
+  - ObjectFH1
+  - Points1
+  - Points2
+  - Points3
   layers:
   - Default
   - TransparentFX

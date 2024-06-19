@@ -14,6 +14,10 @@ public class FlashlightChip : MonoBehaviour
 
     public static Action FlashlightTaken;
 
+    public GameObject trigger_active1;
+
+    public GameObject trigger_active2;
+
     void Update()
     {
         checkPlayersItem();
@@ -30,7 +34,11 @@ public class FlashlightChip : MonoBehaviour
                 currentItemInHands.gameObject.SetActive(false);
             }else if (in_zone && currentItemInHands.gameObject.tag == "Memory_chip" && Input.GetKeyDown(KeyCode.E))
             {
-                AIBehavuor.is_start = true;
+                //здесь катсцена
+                currentItemInHands.gameObject.SetActive(false);
+                OnQuestIsDoneDialog.the_end_dialoge = true;
+                trigger_active1.SetActive(true);
+                AIBehavuor.is_the_end = true;
             }
         }
     }
