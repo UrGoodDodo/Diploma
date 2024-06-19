@@ -6,12 +6,12 @@ public class QuitGame : MonoBehaviour
 {
     private void OnEnable()
     {
-        OnQuestIsDoneDialog.IsTheEndAction += ExitGame;
+        DialogCore.IsTheEndAction += ExitGame;
     }
 
     private void OnDisable()
     {
-        OnQuestIsDoneDialog.IsTheEndAction -= ExitGame;
+        DialogCore.IsTheEndAction -= ExitGame;
     }
 
     void ExitGame() 

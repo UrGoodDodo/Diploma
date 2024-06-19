@@ -34,6 +34,8 @@ public class DialogCore : MonoBehaviour
     public delegate void DialogsPlay(int number);
     public static event DialogsPlay DialogsArePlayed;
 
+    public static Action IsTheEndAction;
+
     private void OnEnable()
     {
         LinearDialog.switchCoreDialogStatus += changeDialogStatus;
@@ -82,9 +84,10 @@ public class DialogCore : MonoBehaviour
 
                 if (countPlayedDialogs == dialogTiggers.Count - 1) 
                     DialogsArePlayed?.Invoke(sceneNum);
-                    
+
             }
         }
+        QuitGame();
     }
 
     void getCurrentDialogs(int sceneNum)
@@ -109,6 +112,14 @@ public class DialogCore : MonoBehaviour
         foreach (var item in dialogTiggers)
         {
             item.SetActive(false);
+        }
+    }
+
+    void QuitGame() 
+    {
+        if (countPlayedDialogs == dialogTiggers.Count - 1 && sceneNum == 5) 
+        {
+            IsTheEndAction?.Invoke();
         }
     }
 }

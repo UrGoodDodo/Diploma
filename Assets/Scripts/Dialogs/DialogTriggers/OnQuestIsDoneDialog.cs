@@ -20,8 +20,6 @@ public class OnQuestIsDoneDialog : MonoBehaviour
 
     public static bool the_end_dialoge = false;
 
-    public static Action IsTheEndAction;
-
     private void Start()
     {
         if(dialog_num == 3 || dialog_num == 8 || dialog_num == 9)
@@ -64,13 +62,11 @@ public class OnQuestIsDoneDialog : MonoBehaviour
             {
                 cd.clauseFullFilled();
                 activateDialog = true;
-                dialog_num = 12;
             }
             if (dialog_num == 12)
             {
                 cd.clauseFullFilled();
                 activateDialog = true;
-                IsTheEndAction?.Invoke();
             }
         }
     }
