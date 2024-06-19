@@ -5137,7 +5137,8 @@ MonoBehaviour:
   uiBackground: {fileID: 763240739}
   uiTextName: {fileID: 2074820277}
   uiText: {fileID: 1391917276}
-  disabledWiaDialog: []
+  disabledWiaDialog:
+  - {fileID: 167890287153212836}
 --- !u!114 &1184915559
 MonoBehaviour:
   m_ObjectHideFlags: 0

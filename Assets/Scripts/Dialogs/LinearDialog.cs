@@ -46,7 +46,7 @@ public class LinearDialog : MonoBehaviour
     private void Start()
     {
         setActiveQuestObjects = GetComponent<SetActiveQuestObjects>();
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
     }
 
     // Update is called once per frame

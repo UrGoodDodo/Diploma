@@ -38,7 +38,7 @@ public class LightBehavour : MonoBehaviour
     void Update()
     {
         RotateFlashlight();
-        if (true)
+        if (flashlight_was_taken)
         {
             if (room_dark)
             {
