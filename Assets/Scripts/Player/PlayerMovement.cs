@@ -50,12 +50,24 @@ public class PlayerMovement : MonoBehaviour
 
     public MovementState state;
 
+    bool canMove = true;
+
     public enum MovementState 
     {
         walking,
         sprinting,
         crouching,
         air
+    }
+
+    private void OnEnable()
+    {
+        FlashlightChip.SetPlayerMovementDisabled += ChangeMoveStatus;
+    }
+
+    private void OnDisable()
+    {
+        FlashlightChip.SetPlayerMovementDisabled -= ChangeMoveStatus;
     }
 
     // Start is called before the first frame update
@@ -146,17 +158,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        grounded = Physics.Raycast(transform.position, Vector3.down, playersHeight * 0.5f + 0.1f, whatIsGround); // проверка на нахождение на земле
+        if (canMove) 
+        {
+            grounded = Physics.Raycast(transform.position, Vector3.down, playersHeight * 0.5f + 0.1f, whatIsGround); // проверка на нахождение на земле
 
-        Custom_Input();
-        SpeedControl();
-        StateHandler();
+            Custom_Input();
+            SpeedControl();
+            StateHandler();
 
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
+            if (grounded)
+                rb.drag = groundDrag;
+            else
+                rb.drag = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -212,6 +226,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetSlopeMoveDirection() 
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+
+    void ChangeMoveStatus() 
+    {
+        canMove = false;
     }
 
 }

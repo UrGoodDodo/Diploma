@@ -18,6 +18,8 @@ public class FlashlightChip : MonoBehaviour
 
     public GameObject trigger_active2;
 
+    public static Action SetPlayerMovementDisabled;
+
     void Update()
     {
         checkPlayersItem();
@@ -35,6 +37,7 @@ public class FlashlightChip : MonoBehaviour
             }else if (in_zone && currentItemInHands.gameObject.tag == "Memory_chip" && Input.GetKeyDown(KeyCode.E))
             {
                 //здесь катсцена
+                SetPlayerMovementDisabled?.Invoke();
                 currentItemInHands.gameObject.SetActive(false);
                 OnQuestIsDoneDialog.the_end_dialoge = true;
                 trigger_active1.SetActive(true);
