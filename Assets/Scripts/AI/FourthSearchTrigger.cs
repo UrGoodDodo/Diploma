@@ -10,6 +10,7 @@ public class FourthSearchTrigger : MonoBehaviour
     {
         if (GameObject.FindGameObjectWithTag("Player"))
         {
+            AIBehavuor.points.Clear();
             if (trigger_num == 1)
             {
                 AIBehavuor.search_number = 1;
@@ -23,7 +24,6 @@ public class FourthSearchTrigger : MonoBehaviour
             }
             AIBehavuor.flag_restart = true;
             AIBehavuor.is_searching_key = true;
-            AIBehavuor.points.Clear();
         }
     }
 

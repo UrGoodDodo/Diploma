@@ -14271,6 +14271,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1112722405147347639, guid: 383a3663f5053144784eb7d133746bb5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1473190902179736418, guid: 383a3663f5053144784eb7d133746bb5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -24460,6 +24464,10 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1252062572426349746, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252062572426349746, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
       propertyPath: m_TagString
       value: Memory_chip
       objectReference: {fileID: 0}
@@ -24530,6 +24538,10 @@ PrefabInstance:
     - target: {fileID: 6044984204224783743, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044984204224783743, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6044984204224783743, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
       propertyPath: m_TagString

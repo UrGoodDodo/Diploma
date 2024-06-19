@@ -124,7 +124,7 @@ public class AIBehavuor : MonoBehaviour
     //State of following AI
     protected void Follow()
     {
-        if (is_start)
+        if (true)
         {
             if (ai_nav.isStopped)
                 ai_nav.Resume();
