@@ -45,6 +45,8 @@ public class FourthPuzzleCore : MonoBehaviour
                 }
             }
         }
+        else
+            flag = false;
 
         if (flag) // puzzle complete
         {

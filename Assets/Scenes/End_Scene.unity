@@ -3091,6 +3091,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74ec9bce963fefc4aa0df2abfcf42291, type: 3}
+--- !u!1 &258648455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1252062572426349746, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
+  m_PrefabInstance: {fileID: 1730782061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &259088761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3297,6 +3302,14 @@ PrefabInstance:
       propertyPath: uiBackground
       value: 
       objectReference: {fileID: 1085520080}
+    - target: {fileID: 1425065210020217172, guid: 14e41f31b637a364eaa858629819cf1e, type: 3}
+      propertyPath: disabledWiaDialog.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425065210020217172, guid: 14e41f31b637a364eaa858629819cf1e, type: 3}
+      propertyPath: disabledWiaDialog.Array.data[0]
+      value: 
+      objectReference: {fileID: 258648455}
     - target: {fileID: 4476467997929355957, guid: 14e41f31b637a364eaa858629819cf1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5123634
@@ -24485,15 +24498,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2756971548957523206, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.999
+      value: 9.869
       objectReference: {fileID: 0}
     - target: {fileID: 2756971548957523206, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5312
+      value: 3.89
       objectReference: {fileID: 0}
     - target: {fileID: 2756971548957523206, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.296
+      value: 23.843
       objectReference: {fileID: 0}
     - target: {fileID: 2756971548957523206, guid: 7402369b11e59ae40bb92a560afd2b13, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26648,7 +26661,8 @@ MonoBehaviour:
   uiBackground: {fileID: 1085520080}
   uiTextName: {fileID: 383296227}
   uiText: {fileID: 1542293933}
-  disabledWiaDialog: []
+  disabledWiaDialog:
+  - {fileID: 258648455}
 --- !u!114 &1872633696
 MonoBehaviour:
   m_ObjectHideFlags: 0
