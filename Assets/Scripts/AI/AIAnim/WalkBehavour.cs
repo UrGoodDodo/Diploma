@@ -23,15 +23,16 @@ public class WalkBehavour : StateMachineBehaviour
         if (AIBehavuor.is_searching_key && !AIBehavuor.key_was_found)
         {
             if (AIBehavuor.ai_nav.remainingDistance <= AIBehavuor.ai_nav.stoppingDistance)
-            { 
-                if(AIBehavuor.points[Random.Range(0, AIBehavuor.points.Count)] != null)
+            {
+                Debug.Log("1");
+                if (AIBehavuor.points[Random.Range(0, AIBehavuor.points.Count)] != null)
                     AIBehavuor.ai_nav.SetDestination(AIBehavuor.points[Random.Range(0, AIBehavuor.points.Count)].position);
             }
 
             timer += Time.deltaTime;
             if (timer > 3)
             {
-
+                Debug.Log("2");
                 animator.SetBool("IsSearching", true);
                 animator.SetBool("IsWalking", false);
                 animator.Play("search");

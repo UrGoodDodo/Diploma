@@ -81,9 +81,9 @@ public class AIBehavuor : MonoBehaviour
                     {
                         foreach (GameObject p in pointObject)
                         {
+                            Debug.Log($"HelpPoint{search_number}"); 
                             points.Add(p.transform);
                         }
-                        Debug.Log(search_number);
                         ai_nav = anim.GetComponent<NavMeshAgent>();
                         if (points[0] != null)
                             ai_nav.SetDestination(points[0].position);

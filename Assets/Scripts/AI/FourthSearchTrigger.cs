@@ -24,6 +24,7 @@ public class FourthSearchTrigger : MonoBehaviour
             }
             AIBehavuor.flag_restart = true;
             AIBehavuor.is_searching_key = true;
+            AIBehavuor.key_was_found = false;
         }
     }
 
